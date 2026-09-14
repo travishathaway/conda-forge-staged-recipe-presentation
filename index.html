@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--
+  conda-forge deck template for reveal.js
+  ---------------------------------------
+  Colors + type follow the conda-forge brand guide (conda-forge.org/style-guide).
+
+  Layouts available (set the class on the inner .cf-slide wrapper):
+    .cf-slide--title     title slide
+    .cf-slide--divider   section divider, gradient background
+    (default)            bulleted content
+    .cf-slide--split     two columns
+    .cf-slide--stat      one big figure, or .cf-stat-row for three
+    .cf-slide--quote     pull quote
+    (default) + <pre>    code
+    (default) + <table>  table
+    .cf-slide--bleed     full-bleed image with caption
+    .cf-slide--end       closing slide with links
+
+  Conventions:
+    - reveal sets display:block inline on the active <section>, so every slide's
+      layout lives on an inner <div class="cf-slide">.
+    - Colored slides ALSO set data-background-color / data-background-gradient /
+      data-background-image on the <section>. reveal paints those on its
+      viewport-filling .backgrounds layer, so they reach every viewport edge
+      (and survive ?print-pdf); the .cf-slide only covers the 1920x1080 canvas.
+    - data-state="bare" on a <section> hides the footer, watermark and slide number.
+    - Dark mode = class "cf-dark" on <html>. The toggle top-right flips it.
+    - reveal config (canvas size, transitions, plugins) lives in main.js.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Join the forge &middot; contributing to conda-forge</title>
+    <link data-rh="true" rel="icon" href="/assets/favicon.ico">
+
+    <!-- main.js imports reveal's CSS followed by theme/conda-forge.css and
+         initializes reveal; do not add a separate theme <link> here. -->
+    <script type="module" src="./main.js"></script>
+  </head>
+
+  <body>
+    <button class="cf-theme-toggle" type="button" onclick="document.documentElement.classList.toggle('cf-dark')">Theme</button>
+
+    <div class="reveal">
+      <div class="slides">
+        <!-- ===== 1. Title ============================================== -->
+        <section data-label="Title" data-state="bare" data-background-color="var(--cf-surface)">
+          <div class="cf-slide cf-slide--title">
+            <img class="cf-logo cf-watermark--light" src="assets/anvil-light.svg" alt="conda-forge" />
+            <img class="cf-logo cf-watermark--dark" src="assets/anvil-dark.svg" alt="conda-forge" />
+            <h1>Join the forge!</h1>
+            <p class="cf-lede">Contributing Your First Package to conda-forge</p>
+            <hr class="cf-rule" />
+            <div class="cf-title-meta">
+              <span>Travis Hathaway</span>
+              <span>DoEPy Python Exchange</span>
+              <span>September 2026</span>
+            </div>
+          </div>
+          <aside class="notes">Speaker notes go here. Press S to open the notes window.</aside>
+        </section>
+
+        <!-- ===== 2. Section divider ==================================== -->
+        <section data-label="Section divider" data-state="bare" data-background-gradient="var(--cf-gradient)">
+          <div class="cf-slide cf-slide--divider">
+            <span class="cf-section-no">01</span>
+            <h2>Section title</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </section>
+
+        <!-- ===== 3. Bulleted content (with fragments) ================== -->
+        <section data-label="Bulleted content">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Overview</span>
+              <h2>Bulleted content</h2>
+            </div>
+            <ul>
+              <li class="fragment">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              <li class="fragment">Sed do eiusmod tempor incididunt ut labore et dolore.</li>
+              <li class="fragment">Ut enim ad minim veniam, quis nostrud exercitation.</li>
+            </ul>
+          </div>
+          <aside class="notes">Each bullet is a fragment: press space to reveal them one at a time. Drop the class to show all at once.</aside>
+        </section>
+
+        <!-- ===== 4. Two column ========================================= -->
+        <section data-label="Two column">
+          <div class="cf-slide cf-slide--split">
+            <div>
+              <span class="cf-eyebrow">Comparison</span>
+              <h2>Two columns</h2>
+            </div>
+            <div class="cf-cols">
+              <div class="cf-col">
+                <h3>Column one</h3>
+                <p class="cf-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+              </div>
+              <div class="cf-col">
+                <h3>Column two</h3>
+                <p class="cf-muted">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 5. Big number ========================================= -->
+        <section data-label="Big number">
+          <div class="cf-slide cf-slide--stat">
+            <span class="cf-eyebrow">Single figure</span>
+            <span class="cf-stat">1.2&thinsp;M</span>
+            <p class="cf-lede">Short label explaining what the number counts.</p>
+          </div>
+        </section>
+
+        <!-- ===== 6. Three figures ====================================== -->
+        <section data-label="Three figures">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">At a glance</span>
+              <h2>Three figures</h2>
+            </div>
+            <div class="cf-stat-row">
+              <div class="cf-col">
+                <span class="cf-stat">24</span>
+                <p class="cf-small">Lorem ipsum dolor sit amet.</p>
+              </div>
+              <div class="cf-col">
+                <span class="cf-stat">68%</span>
+                <p class="cf-small">Consectetur adipiscing elit.</p>
+              </div>
+              <div class="cf-col">
+                <span class="cf-stat">9.4k</span>
+                <p class="cf-small">Sed do eiusmod tempor.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 7. Quote ============================================== -->
+        <section data-label="Quote" data-background-color="var(--cf-surface)">
+          <div class="cf-slide cf-slide--quote">
+            <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</blockquote>
+            <p class="cf-attrib">Attribution name, role</p>
+          </div>
+        </section>
+
+        <!-- ===== 8. Code =============================================== -->
+        <section data-label="Code">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Example</span>
+              <h2>Code block</h2>
+            </div>
+            <span class="cf-code-title">recipe/meta.yaml</span>
+            <pre><code class="language-yaml" data-trim data-line-numbers>package:
+  name: example-package
+  version: 0.3.1
+
+source:
+  url: https://example.org/example-{{ version }}.tar.gz
+  sha256: 0000000000000000000000000000000000000000000000000000000000000000
+
+build:
+  number: 0
+  noarch: python</code></pre>
+          </div>
+          <aside class="notes">Syntax highlighting comes from the reveal.js highlight plugin; token colors are defined in theme/conda-forge.css.</aside>
+        </section>
+
+        <!-- ===== 9. Table ============================================== -->
+        <section data-label="Table">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Detail</span>
+              <h2>Table</h2>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Description</th>
+                  <th class="cf-num">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lorem</td>
+                  <td>Consectetur adipiscing elit</td>
+                  <td class="cf-num">128</td>
+                </tr>
+                <tr>
+                  <td>Ipsum</td>
+                  <td>Sed do eiusmod tempor</td>
+                  <td class="cf-num">64</td>
+                </tr>
+                <tr>
+                  <td>Dolor</td>
+                  <td>Ut labore et dolore magna</td>
+                  <td class="cf-num">32</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===== 10. Full-bleed image ================================== -->
+        <!-- The image is the section background so it fills the whole viewport.
+             For a real photo replace the gradient attribute with:
+               data-background-image="assets/photo.jpg" data-background-size="cover" -->
+        <section data-label="Full-bleed image" data-state="bare" data-background-gradient="var(--cf-gradient)">
+          <div class="cf-slide cf-slide--bleed">
+            <div class="cf-bleed-caption">
+              <span class="cf-eyebrow">Full bleed</span>
+              <h2>Caption sits over a protection gradient</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 11. Section divider =================================== -->
+        <section data-label="Section divider 2" data-state="bare" data-background-gradient="var(--cf-gradient)">
+          <div class="cf-slide cf-slide--divider">
+            <span class="cf-section-no">02</span>
+            <h2>Next section title</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </section>
+
+        <!-- ===== 12. Closing =========================================== -->
+        <section data-label="Thank you" data-state="bare" data-background-gradient="var(--cf-gradient)">
+          <div class="cf-slide cf-slide--end">
+            <h2>Thank you</h2>
+            <div class="cf-links">
+              <a href="https://conda-forge.org/">conda-forge.org</a>
+              <a href="https://github.com/conda-forge">github.com/conda-forge</a>
+              <a href="https://conda-forge.zulipchat.com/">conda-forge.zulipchat.com</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Persistent chrome. .cf-chrome is a 1920x1080 layer that is scaled
+           and centered exactly like .slides, so canvas px offsets line up with
+           slide content at any viewport size. -->
+      <div class="cf-chrome" aria-hidden="true">
+        <div class="cf-footer">
+          <span class="cf-footer__title">Join the Forge!</span>
+          <span class="cf-footer__sep">/</span>
+          <span class="cf-footer__date">Sep 2026</span>
+        </div>
+        <img class="cf-watermark cf-watermark--light" src="assets/anvil-light.svg" alt="" />
+        <img class="cf-watermark cf-watermark--dark" src="assets/anvil-dark.svg" alt="" />
+      </div>
+    </div>
+  </body>
+</html>

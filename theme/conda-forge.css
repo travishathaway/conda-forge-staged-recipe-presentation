@@ -1,0 +1,779 @@
+/* ==========================================================================
+   conda-forge theme for reveal.js
+   Colors and typography from the conda-forge brand guide
+   (https://conda-forge.org/style-guide/). Authored at 1920x1080.
+
+   Light mode is the default. Add class "cf-dark" to <html> for dark mode.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  /* --- Brand teals (light -> dark) ------------------------------------- */
+  --cf-teal-50: #e0f2f1;
+  --cf-teal-100: #b2dfdb;
+  --cf-teal-200: #80cbc4;
+  --cf-teal-300: #4db6ac;
+  --cf-teal-400: #26a69a;
+  --cf-teal-500: #009688;
+  --cf-teal-600: #00897b;
+  --cf-teal-700: #00796b;
+  --cf-teal-750: #007466;
+  --cf-teal-800: #00695c;
+  --cf-teal-900: #004d40;
+
+  --cf-primary: #008478;
+  --cf-gradient: linear-gradient(60deg, #00695c 20%, #26a69a 80%);
+
+  /* --- System colors --------------------------------------------------- */
+  --cf-info: #1976d2;
+  --cf-success: #388e3c;
+  --cf-warning: #ef6c00;
+  --cf-danger: #d84315;
+
+  /* --- Light theme surfaces ------------------------------------------- */
+  --cf-bg: #ffffff;
+  --cf-surface: #f2f9f8;
+  --cf-ink: #1b1b1b;
+  --cf-ink-muted: #4b5c59;
+  --cf-rule: #d3e6e3;
+  --cf-accent: var(--cf-primary);
+  --cf-on-accent: #ffffff;
+  --cf-code-bg: #f2f9f8;
+
+  /* --- Type scale (1920x1080) ----------------------------------------- */
+  --cf-type-hero: 104px;
+  --cf-type-title: 72px;
+  --cf-type-subtitle: 44px;
+  --cf-type-body: 34px;
+  --cf-type-small: 28px;
+  --cf-type-micro: 24px;
+  --cf-type-stat: 216px;
+
+  /* --- Spacing -------------------------------------------------------- */
+  --cf-pad-x: 120px;
+  --cf-pad-top: 100px;
+  --cf-pad-bottom: 96px;
+  --cf-gap-title: 48px;
+  --cf-gap-item: 26px;
+
+  /* --- reveal.js core variables --------------------------------------- */
+  --r-background-color: var(--cf-bg);
+  --r-main-font: "Inter", system-ui, sans-serif;
+  --r-main-font-size: var(--cf-type-body);
+  --r-main-color: var(--cf-ink);
+  --r-heading-font: "Montserrat", system-ui, sans-serif;
+  --r-heading-color: var(--cf-ink);
+  --r-heading-line-height: 1.1;
+  --r-heading-letter-spacing: -0.015em;
+  --r-heading-text-transform: none;
+  --r-heading-font-weight: 700;
+  --r-link-color: var(--cf-accent);
+  --r-link-color-hover: var(--cf-teal-400);
+  --r-selection-background-color: var(--cf-teal-100);
+  --r-selection-color: var(--cf-ink);
+  --r-code-font: ui-monospace, "SFMono-Regular", "Cascadia Mono", Menlo, monospace;
+}
+
+.cf-dark {
+  --cf-bg: #1b1b1b;
+  --cf-surface: #232827;
+  --cf-ink: #f1f6f5;
+  --cf-ink-muted: #a6c1bd;
+  --cf-rule: #33403e;
+  --cf-accent: var(--cf-teal-300);
+  --cf-on-accent: #06302b;
+  --cf-code-bg: #14201e;
+  --r-selection-background-color: var(--cf-teal-800);
+  --r-selection-color: #ffffff;
+}
+
+/* ==========================================================================
+   Stage
+   ========================================================================== */
+
+html,
+body {
+  background: var(--cf-bg);
+}
+
+.reveal {
+  font-family: var(--r-main-font);
+  font-size: var(--r-main-font-size);
+  font-weight: 400;
+  color: var(--cf-ink);
+  letter-spacing: -0.005em;
+}
+
+.reveal-viewport {
+  background: var(--cf-bg);
+  transition: background-color 0.25s ease;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+/* reveal sets display:block inline on the active <section>, so each slide's
+   layout lives on an inner .cf-slide wrapper instead.
+   --slide-width / --slide-height are set by reveal on .reveal-viewport from the
+   width/height config in main.js (1920x1080); the fallbacks cover the instant
+   before the first layout() call. */
+.reveal .slides section {
+  padding: 0;
+  height: var(--slide-height, 1080px);
+}
+
+.cf-slide {
+  box-sizing: border-box;
+  height: 100%;
+  padding: var(--cf-pad-top) var(--cf-pad-x) var(--cf-pad-bottom);
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-gap-title);
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  font-family: var(--r-heading-font);
+  color: var(--cf-ink);
+  line-height: var(--r-heading-line-height);
+  letter-spacing: var(--r-heading-letter-spacing);
+  text-transform: none;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.reveal h1 {
+  font-size: var(--cf-type-hero);
+  font-weight: 700;
+}
+.reveal h2 {
+  font-size: var(--cf-type-title);
+  font-weight: 700;
+}
+.reveal h3 {
+  font-size: var(--cf-type-subtitle);
+  font-weight: 600;
+}
+.reveal h4 {
+  font-size: var(--cf-type-body);
+  font-weight: 600;
+}
+
+.reveal p {
+  margin: 0;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.reveal a {
+  color: var(--cf-accent);
+  text-decoration: none;
+  border-bottom: 2px solid color-mix(in oklab, var(--cf-accent) 40%, transparent);
+}
+.reveal a:hover {
+  color: var(--cf-teal-400);
+  border-bottom-color: var(--cf-teal-400);
+}
+
+.reveal strong,
+.reveal b {
+  font-weight: 600;
+  color: var(--cf-ink);
+}
+
+.reveal em {
+  font-style: italic;
+}
+
+/* Small labelled kicker above a title */
+.cf-eyebrow {
+  font-family: var(--r-heading-font);
+  font-size: var(--cf-type-micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cf-accent);
+}
+
+.cf-lede {
+  font-size: var(--cf-type-subtitle);
+  line-height: 1.3;
+  color: var(--cf-ink-muted);
+  max-width: 24ch;
+}
+
+.cf-muted {
+  color: var(--cf-ink-muted);
+}
+
+.cf-small {
+  font-size: var(--cf-type-small);
+  color: var(--cf-ink-muted);
+}
+
+.cf-rule {
+  width: 220px;
+  height: 10px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--cf-gradient);
+  margin: 0;
+}
+
+.cf-spacer {
+  flex: 1 1 auto;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+.reveal ul,
+.reveal ol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-gap-item);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 34ch;
+}
+
+.reveal ul li,
+.reveal ol li {
+  position: relative;
+  padding-left: 52px;
+  line-height: 1.4;
+}
+
+.reveal ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background: var(--cf-gradient);
+}
+
+.reveal ol {
+  counter-reset: cf-ol;
+}
+.reveal ol li {
+  counter-increment: cf-ol;
+}
+.reveal ol li::before {
+  content: counter(cf-ol);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--r-heading-font);
+  font-weight: 700;
+  font-size: var(--cf-type-small);
+  color: var(--cf-accent);
+}
+
+.reveal li ul,
+.reveal li ol {
+  margin-top: var(--cf-gap-item);
+  font-size: var(--cf-type-small);
+}
+
+/* ==========================================================================
+   Layout: title slide
+   Section carries data-background-color="var(--cf-surface)".
+   ========================================================================== */
+
+.cf-slide--title {
+  justify-content: center;
+  gap: 44px;
+}
+
+.cf-slide--title .cf-logo {
+  height: 132px;
+  width: auto;
+  align-self: flex-start;
+}
+
+.cf-title-meta {
+  display: flex;
+  align-self: flex-start;
+  gap: 40px;
+  font-size: var(--cf-type-small);
+  color: var(--cf-ink-muted);
+}
+
+/* ==========================================================================
+   Layout: section divider (gradient, reversed)
+   Section carries data-background-gradient="var(--cf-gradient)".
+   ========================================================================== */
+
+.cf-slide--divider {
+  justify-content: flex-end;
+  color: #ffffff;
+}
+
+.cf-slide--divider h2,
+.cf-slide--divider .cf-eyebrow,
+.cf-slide--divider p {
+  color: #ffffff;
+}
+
+.cf-slide--divider .cf-section-no {
+  font-family: var(--r-heading-font);
+  font-weight: 700;
+  font-size: 160px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* ==========================================================================
+   Layout: two column
+   ========================================================================== */
+
+.cf-slide--split .cf-cols {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 96px;
+  align-content: start;
+}
+
+.cf-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-gap-item);
+}
+
+.cf-card {
+  background: var(--cf-surface);
+  border-radius: 20px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ==========================================================================
+   Layout: big number
+   ========================================================================== */
+
+.cf-slide--stat {
+  justify-content: center;
+  gap: 32px;
+}
+
+.cf-stat {
+  font-family: var(--r-heading-font);
+  font-weight: 700;
+  font-size: var(--cf-type-stat);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  background: var(--cf-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cf-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 64px;
+}
+
+.cf-stat-row .cf-stat {
+  font-size: 120px;
+}
+
+/* ==========================================================================
+   Layout: quote
+   Section carries data-background-color="var(--cf-surface)".
+   ========================================================================== */
+
+.cf-slide--quote {
+  justify-content: center;
+  gap: 56px;
+}
+
+.reveal blockquote {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  box-shadow: none;
+  background: none;
+  font-family: var(--r-heading-font);
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--cf-ink);
+  font-style: normal;
+  max-width: 30ch;
+}
+
+.cf-attrib {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 24px;
+  font-size: var(--cf-type-small);
+  color: var(--cf-ink-muted);
+}
+
+.cf-attrib::before {
+  content: "";
+  width: 72px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--cf-gradient);
+}
+
+/* ==========================================================================
+   Layout: code
+   ========================================================================== */
+
+.reveal pre {
+  width: 100%;
+  margin: 0;
+  box-shadow: none;
+  font-size: var(--cf-type-small);
+  line-height: 1.5;
+  background: var(--cf-code-bg);
+  border: 1px solid var(--cf-rule);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.reveal pre code {
+  display: block;
+  padding: 44px 48px;
+  max-height: none;
+  font-family: var(--r-code-font);
+  background: none;
+  overflow: auto;
+  border-radius: 0;
+}
+
+.reveal code {
+  font-family: var(--r-code-font);
+  color: var(--cf-teal-750);
+}
+.cf-dark .reveal code {
+  color: var(--cf-teal-200);
+}
+
+.cf-code-title {
+  font-family: var(--r-code-font);
+  font-size: var(--cf-type-micro);
+  color: var(--cf-ink-muted);
+}
+
+/* highlight.js tokens, conda-forge palette */
+.hljs {
+  color: var(--cf-ink);
+  background: none;
+}
+.hljs-comment,
+.hljs-quote {
+  color: var(--cf-ink-muted);
+  font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-type {
+  color: var(--cf-teal-750);
+  font-weight: 600;
+}
+.cf-dark .hljs-keyword,
+.cf-dark .hljs-selector-tag,
+.cf-dark .hljs-literal,
+.cf-dark .hljs-type {
+  color: var(--cf-teal-200);
+}
+.hljs-string,
+.hljs-attr,
+.hljs-attribute,
+.hljs-addition {
+  color: var(--cf-info);
+}
+.cf-dark .hljs-string,
+.cf-dark .hljs-attr,
+.cf-dark .hljs-attribute,
+.cf-dark .hljs-addition {
+  color: #7fb4ea;
+}
+.hljs-number,
+.hljs-built_in,
+.hljs-name {
+  color: var(--cf-warning);
+}
+.hljs-title,
+.hljs-section,
+.hljs-meta {
+  color: var(--cf-teal-400);
+  font-weight: 600;
+}
+.hljs-deletion {
+  color: var(--cf-danger);
+}
+
+/* ==========================================================================
+   Layout: table
+   ========================================================================== */
+
+.reveal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--cf-type-small);
+}
+
+.reveal table th {
+  font-family: var(--r-heading-font);
+  font-weight: 600;
+  text-align: left;
+  color: #ffffff;
+  background: var(--cf-teal-800);
+  padding: 24px 32px;
+  border: 0;
+}
+
+.reveal table th:first-child {
+  border-top-left-radius: 14px;
+}
+.reveal table th:last-child {
+  border-top-right-radius: 14px;
+}
+
+.reveal table td {
+  padding: 24px 32px;
+  border: 0;
+  border-bottom: 1px solid var(--cf-rule);
+  vertical-align: top;
+}
+
+.reveal table tbody tr:nth-child(even) td {
+  background: var(--cf-surface);
+}
+
+.reveal table .cf-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Layout: full-bleed image
+   The image lives on the <section> as
+     data-background-image="assets/photo.jpg" data-background-size="cover"
+   (or data-background-gradient for the template placeholder) so it fills the
+   whole viewport; this wrapper only positions the caption.
+   ========================================================================== */
+
+.cf-slide--bleed {
+  padding: 0;
+  gap: 0;
+  justify-content: flex-end;
+}
+
+.cf-bleed-caption {
+  position: relative;
+  padding: 96px var(--cf-pad-x);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: linear-gradient(to top, rgba(0, 32, 28, 0.92) 0%, rgba(0, 32, 28, 0.72) 55%, rgba(0, 32, 28, 0) 100%);
+}
+
+.cf-bleed-caption h2,
+.cf-bleed-caption p,
+.cf-bleed-caption .cf-eyebrow {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Layout: closing slide
+   Section carries data-background-gradient="var(--cf-gradient)".
+   ========================================================================== */
+
+.cf-slide--end {
+  justify-content: center;
+  gap: 48px;
+  color: #ffffff;
+}
+
+.cf-slide--end h2,
+.cf-slide--end p,
+.cf-slide--end a {
+  color: #ffffff;
+}
+
+.cf-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  font-size: var(--cf-type-body);
+}
+
+.cf-links a {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+.cf-links a:hover {
+  color: var(--cf-teal-100);
+  border-bottom-color: var(--cf-teal-100);
+}
+
+/* ==========================================================================
+   Persistent chrome: footer, watermark, theme switch
+   ========================================================================== */
+
+/* A 1920x1080 layer positioned and scaled exactly like reveal positions
+   .slides (left/top 50%, translate(-50%,-50%) scale(--slide-scale)), so the
+   canvas-px offsets on .cf-footer / .cf-watermark below line up with slide
+   padding at any viewport size. reveal writes --slide-scale on
+   .reveal-viewport on every layout(). */
+.cf-chrome {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--slide-width, 1920px);
+  height: var(--slide-height, 1080px);
+  transform: translate(-50%, -50%) scale(var(--slide-scale, 1));
+  pointer-events: none;
+  z-index: 30;
+  transition: opacity 0.2s ease;
+}
+
+.cf-footer {
+  position: absolute;
+  left: var(--cf-pad-x);
+  right: calc(var(--cf-pad-x) + 240px);
+  bottom: 40px;
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  font-size: var(--cf-type-micro);
+  color: var(--cf-ink-muted);
+}
+
+.cf-footer__sep {
+  color: var(--cf-rule);
+}
+
+.cf-watermark {
+  position: absolute;
+  right: var(--cf-pad-x);
+  bottom: 26px;
+  height: 44px;
+  width: auto;
+  opacity: 0.5;
+}
+
+.cf-watermark--light {
+  display: block;
+}
+.cf-watermark--dark {
+  display: none;
+}
+.cf-dark .cf-watermark--light {
+  display: none;
+}
+.cf-dark .cf-watermark--dark {
+  display: block;
+}
+
+/* Add data-state="bare" to any <section> that should hide footer, watermark
+   and slide number (title, dividers, full-bleed, closing). reveal adds
+   data-state values as classes on .reveal-viewport, which wraps .reveal. */
+.bare .cf-chrome {
+  opacity: 0;
+}
+
+/* reveal's built-in slide number, parked in the footer line. reveal renders
+   it directly under .reveal (outside .cf-chrome), so it is positioned in
+   viewport space and converted to canvas terms: letterbox offset
+   ((viewport - scaled canvas) / 2) plus the scaled canvas-px inset. Offsets
+   mirror .cf-footer (bottom: 40px) and sit 80px right of the footer's
+   right edge, left of the watermark. */
+.reveal .slide-number {
+  position: absolute;
+  right: calc(
+    (100% - var(--slide-width, 1920px) * var(--slide-scale, 1)) / 2 +
+      (var(--cf-pad-x) + 80px) * var(--slide-scale, 1)
+  );
+  bottom: calc(
+    (100% - var(--slide-height, 1080px) * var(--slide-scale, 1)) / 2 +
+      40px * var(--slide-scale, 1)
+  );
+  left: auto;
+  top: auto;
+  z-index: 31;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: var(--r-heading-font);
+  font-size: calc(var(--cf-type-micro) * var(--slide-scale, 1));
+  font-weight: 600;
+  color: var(--cf-ink-muted);
+  transition: opacity 0.2s ease;
+}
+.bare .reveal .slide-number {
+  opacity: 0;
+}
+
+.cf-theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 60;
+  appearance: none;
+  border: 1px solid var(--cf-rule);
+  background: var(--cf-bg);
+  color: var(--cf-ink-muted);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-family: var(--r-heading-font);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.35;
+  transition: opacity 0.2s ease;
+}
+.cf-theme-toggle:hover {
+  opacity: 1;
+}
+
+/* reveal controls + progress bar in brand teal */
+.reveal .controls {
+  color: var(--cf-accent);
+}
+.reveal .progress {
+  color: var(--cf-accent);
+  height: 6px;
+  background: var(--cf-rule);
+}
+
+/* ==========================================================================
+   Print / PDF export
+   ========================================================================== */
+
+@media print {
+  .cf-theme-toggle {
+    display: none;
+  }
+  .cf-slide {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
