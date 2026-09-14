@@ -3,7 +3,10 @@
    Colors and typography from the conda-forge brand guide
    (https://conda-forge.org/style-guide/). Authored at 1920x1080.
 
-   Light mode is the default. Add class "cf-dark" to <html> for dark mode.
+   Light mode is the default. Add class "cf-dark" to <html> for dark mode on
+   the whole deck, or to a single <section> to make just that slide dark
+   (reveal copies the section's classes onto its background element, so
+   data-background-color/gradient slides recolor too).
    ========================================================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
@@ -730,30 +733,6 @@ body {
   opacity: 0;
 }
 
-.cf-theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 60;
-  appearance: none;
-  border: 1px solid var(--cf-rule);
-  background: var(--cf-bg);
-  color: var(--cf-ink-muted);
-  border-radius: 999px;
-  padding: 10px 18px;
-  font-family: var(--r-heading-font);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  opacity: 0.35;
-  transition: opacity 0.2s ease;
-}
-.cf-theme-toggle:hover {
-  opacity: 1;
-}
-
 /* reveal controls + progress bar in brand teal */
 .reveal .controls {
   color: var(--cf-accent);
@@ -769,9 +748,6 @@ body {
    ========================================================================== */
 
 @media print {
-  .cf-theme-toggle {
-    display: none;
-  }
   .cf-slide {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;

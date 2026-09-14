@@ -24,7 +24,11 @@
       viewport-filling .backgrounds layer, so they reach every viewport edge
       (and survive ?print-pdf); the .cf-slide only covers the 1920x1080 canvas.
     - data-state="bare" on a <section> hides the footer, watermark and slide number.
-    - Dark mode = class "cf-dark" on <html>. The toggle top-right flips it.
+    - Dark mode is class "cf-dark":
+        - on <html>            -> whole deck is dark
+        - on one <section>     -> just that slide is dark (reveal copies the
+                                   section's classes onto its background
+                                   element, so data-background-* colors flip too)
     - reveal config (canvas size, transitions, plugins) lives in main.js.
 -->
 <html lang="en">
@@ -40,8 +44,6 @@
   </head>
 
   <body>
-    <button class="cf-theme-toggle" type="button" onclick="document.documentElement.classList.toggle('cf-dark')">Theme</button>
-
     <div class="reveal">
       <div class="slides">
         <!-- ===== 1. Title ============================================== -->
@@ -155,7 +157,7 @@
               <h2>Code block</h2>
             </div>
             <span class="cf-code-title">recipe/meta.yaml</span>
-            <pre><code class="language-yaml" data-trim data-line-numbers>package:
+            <pre class="cf-dark"><code class="language-yaml" data-trim data-line-numbers>package:
   name: example-package
   version: 0.3.1
 

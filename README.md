@@ -118,8 +118,22 @@ variables.
 
 ## Dark mode
 
-Add `cf-dark` to `<html>`. The button top-right toggles it; delete the button
-and hard-code the class if you present in one mode only.
+Add class `cf-dark`:
+
+- to `<html>` to make the whole deck dark.
+- to a single `<section>` to make just that slide dark. reveal copies a
+  slide's classes onto its background element (`js/controllers/backgrounds.js`),
+  so `data-background-color`/`data-background-gradient` slides (title, quote,
+  dividers, full-bleed, closing) recolor correctly too, not just the
+  `.cf-slide` content.
+
+There's no toggle button; hard-code the class where you want it, e.g.:
+
+```html
+<section data-label="Dark slide" class="cf-dark">
+  <div class="cf-slide">…</div>
+</section>
+```
 
 ## Resizing everything
 
