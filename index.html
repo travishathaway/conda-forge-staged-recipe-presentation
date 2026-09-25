@@ -52,7 +52,7 @@
             <img class="cf-logo cf-watermark--light" src="assets/anvil-light.svg" alt="conda-forge" />
             <img class="cf-logo cf-watermark--dark" src="assets/anvil-dark.svg" alt="conda-forge" />
             <h1>Join the forge!</h1>
-            <p class="cf-lede">Contributing Your First Package to conda-forge</p>
+            <p class="cf-lede">Where conda-forge came from, how to submit a recipe, and how to help review one</p>
             <hr class="cf-rule" />
             <div class="cf-title-meta">
               <span>Travis Hathaway</span>
@@ -63,175 +63,487 @@
           <aside class="notes">Speaker notes go here. Press S to open the notes window.</aside>
         </section>
 
-        <!-- ===== 2. Section divider ==================================== -->
-        <section data-label="Section divider" data-state="bare" data-background-gradient="var(--cf-gradient)">
+        <!-- ===== 2. Section divider: History ============================ -->
+        <section data-label="Section divider – History" data-state="bare" data-background-gradient="var(--cf-gradient)">
           <div class="cf-slide cf-slide--divider">
             <span class="cf-section-no">01</span>
-            <h2>Section title</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h2>History of conda-forge</h2>
+            <p>From compiling everything by hand to 30,000+ packages</p>
           </div>
         </section>
 
-        <!-- ===== 3. Bulleted content (with fragments) ================== -->
-        <section data-label="Bulleted content">
+        <!-- ===== 3. Bulleted – Python packaging before conda ============ -->
+        <section data-label="History – Python before conda">
           <div class="cf-slide">
             <div>
-              <span class="cf-eyebrow">Overview</span>
-              <h2>Bulleted content</h2>
+              <span class="cf-eyebrow">Context</span>
+              <h2>Python packaging before conda</h2>
             </div>
             <ul>
-              <li class="fragment">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-              <li class="fragment">Sed do eiusmod tempor incididunt ut labore et dolore.</li>
-              <li class="fragment">Ut enim ad minim veniam, quis nostrud exercitation.</li>
+              <li class="fragment">Early 2010s: Python 2.x was the norm; installers came from python.org, Python(x,y), ActiveState, or Enthought's EPD/Canopy</li>
+              <li class="fragment">The community was moving from <code>easy_install</code>/eggs to <code>pip</code>, but there was no easy way to ship pre-compiled packages</li>
+              <li class="fragment">Wheels weren't formalized until 2013 (PEP 427); on Windows, Christoph Gohlke's builds were often your only option</li>
+              <li class="fragment">Linux users had to compile from source &mdash; <code>manylinux</code> wheels didn't exist until PEP 513 in 2016</li>
             </ul>
           </div>
-          <aside class="notes">Each bullet is a fragment: press space to reveal them one at a time. Drop the class to show all at once.</aside>
         </section>
 
-        <!-- ===== 4. Two column ========================================= -->
-        <section data-label="Two column">
+        <!-- ===== 4. Two column – Shipping compiled code was hard ======== -->
+        <section data-label="History – Binary compatibility">
           <div class="cf-slide cf-slide--split">
             <div>
-              <span class="cf-eyebrow">Comparison</span>
-              <h2>Two columns</h2>
+              <span class="cf-eyebrow">Binary compatibility</span>
+              <h2>Why building from source was the default</h2>
             </div>
             <div class="cf-cols">
               <div class="cf-col">
-                <h3>Column one</h3>
-                <p class="cf-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                <h3>numpy 1.7.0 (Feb 2013)</h3>
+                <p class="cf-muted">Only a few Windows <code>.exe</code> installers, no macOS wheels, no manylinux wheels &mdash; those didn't land until April 2016.</p>
               </div>
               <div class="cf-col">
-                <h3>Column two</h3>
-                <p class="cf-muted">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.</p>
+                <h3>numpy 1.11.0 (Mar 2016)</h3>
+                <p class="cf-muted">Wheels for all platforms.</p>
               </div>
             </div>
           </div>
+          <aside class="notes">Binary compatibility depends on matching compiler + core library (glibc) versions between the build machine and the destination machine. Linux distros freeze these per release, which is why cross-distro binaries are fragile.</aside>
         </section>
 
-        <!-- ===== 5. Big number ========================================= -->
-        <section data-label="Big number">
-          <div class="cf-slide cf-slide--stat">
-            <span class="cf-eyebrow">Single figure</span>
-            <span class="cf-stat">1.2&thinsp;M</span>
-            <p class="cf-lede">Short label explaining what the number counts.</p>
+        <!-- ===== 5. Bulleted – Enter conda (2012-2013) =================== -->
+        <section data-label="History – Enter conda">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Origins</span>
+              <h2>Enter conda (2012&ndash;2013)</h2>
+            </div>
+            <ul>
+              <li class="fragment">2012: Continuum Analytics announces Anaconda 0.8 at SciPy; in September, <code>conda</code> 1.0 ships as a cross-platform, language-agnostic package manager for pre-compiled artifacts</li>
+              <li class="fragment">conda packages could ship compiled shared libraries <em>and</em> Python itself, not just Python code</li>
+              <li class="fragment">By June 2013: <code>conda</code> gets a SAT solver, <code>conda build</code> ships, Miniconda and Binstar.org (hosting for user-built conda packages) launch</li>
+            </ul>
           </div>
         </section>
 
-        <!-- ===== 6. Three figures ====================================== -->
-        <section data-label="Three figures">
+        <!-- ===== 6. Quote ================================================ -->
+        <section data-label="History – Quote (Travis Oliphant)" data-background-color="var(--cf-surface)">
+          <div class="cf-slide cf-slide--quote">
+            <blockquote>&hellip;at the first PyData meetup at Google HQ, where several of us asked Guido what we can do to fix Python packaging for the NumPy stack. Guido's answer was to &lsquo;solve the problem ourselves.&rsquo; We at Continuum took him at his word&hellip; and created the conda package manager and conda environments.</blockquote>
+            <p class="cf-attrib">Travis Oliphant, <em>Why I promote conda</em> (2013)</p>
+          </div>
+        </section>
+
+        <!-- ===== 7. Bulleted – From shared recipes to fragmented channels -->
+        <section data-label="History – Fragmented channels">
           <div class="cf-slide">
             <div>
-              <span class="cf-eyebrow">At a glance</span>
-              <h2>Three figures</h2>
+              <span class="cf-eyebrow">2014</span>
+              <h2>From shared recipes to fragmented channels</h2>
+            </div>
+            <ul>
+              <li class="fragment"><code>ContinuumIO/conda-recipes</code> became the central place to contribute conda recipes &mdash; but quality varied, most recipes only worked on 1&ndash;2 platforms, and there was no CI</li>
+              <li class="fragment">Groups adopted Binstar/Anaconda.org for their own needs: Omnia (Molecular Dynamics, Mar 2014), the Met Office's SciTools (Jun 2014), IOOS (Jul 2014)</li>
+              <li class="fragment">Phil Elson (SciTools) built CI + tooling (<code>conda-build-all</code>); Filipe Fernandes (IOOS) borrowed it &mdash; lots of cross-pollination, but duplicated recipes and unpredictable compatibility when mixing channels</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== 8. Big stat – conda-forge is founded ==================== -->
+        <section data-label="History – conda-forge founded" data-background-color="var(--cf-surface)">
+          <div class="cf-slide cf-slide--stat">
+            <span class="cf-eyebrow">Milestone</span>
+            <span class="cf-stat">April 11, 2015</span>
+            <p class="cf-lede">conda-forge is registered as a GitHub organization and an Anaconda.org channel</p>
+          </div>
+        </section>
+
+        <!-- ===== 9. Bulleted – The toolchain overhaul ==================== -->
+        <section data-label="History – Toolchain overhaul">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Growing pains</span>
+              <h2>The toolchain overhaul</h2>
+            </div>
+            <ul>
+              <li class="fragment">GCC 5 shipped a breaking <code>libstdc++</code> change; the aging CentOS 5 / GCC 4.8 toolchain made building cutting-edge projects (e.g. early TensorFlow) painful</li>
+              <li class="fragment">The community chose to build and ship its own GCC toolchain as conda packages, instead of relying on Red Hat's <code>devtoolset</code></li>
+              <li class="fragment">Result: <code>conda-build</code> 3's <code>compiler(...)</code> Jinja function, the <code>build</code>/<code>host</code>/<code>run</code> dependency split, and dynamic pinning &mdash; funded in part by Samsung and Intel contracts with Anaconda</li>
+              <li class="fragment">This eventually produced the <code>main</code> channel: conda-forge recipes built with the new shared toolchain</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== 10. Three figures – conda-forge today =================== -->
+        <section data-label="History – conda-forge today">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Where we are now</span>
+              <h2>conda-forge today</h2>
             </div>
             <div class="cf-stat-row">
               <div class="cf-col">
-                <span class="cf-stat">24</span>
-                <p class="cf-small">Lorem ipsum dolor sit amet.</p>
+                <span class="cf-stat">30,000+</span>
+                <p class="cf-small">packages</p>
               </div>
               <div class="cf-col">
-                <span class="cf-stat">68%</span>
-                <p class="cf-small">Consectetur adipiscing elit.</p>
+                <span class="cf-stat">100s</span>
+                <p class="cf-small">active maintainers</p>
               </div>
               <div class="cf-col">
-                <span class="cf-stat">9.4k</span>
-                <p class="cf-small">Sed do eiusmod tempor.</p>
+                <span class="cf-stat">10+</span>
+                <p class="cf-small">years old (since 2015)</p>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ===== 7. Quote ============================================== -->
-        <section data-label="Quote" data-background-color="var(--cf-surface)">
-          <div class="cf-slide cf-slide--quote">
-            <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</blockquote>
-            <p class="cf-attrib">Attribution name, role</p>
+        <!-- ===== 11. Section divider: Submitting recipes ================= -->
+        <section data-label="Section divider – Submitting recipes" data-state="bare" data-background-gradient="var(--cf-gradient)">
+          <div class="cf-slide cf-slide--divider">
+            <span class="cf-section-no">02</span>
+            <h2>How to submit your own recipe</h2>
+            <p>Your package's front door: conda-forge/staged-recipes</p>
           </div>
         </section>
 
-        <!-- ===== 8. Code =============================================== -->
-        <section data-label="Code">
+        <!-- ===== 12. Bulleted – staged-recipes: the front door =========== -->
+        <section data-label="Submitting – staged-recipes front door">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Overview</span>
+              <h2>staged-recipes: the front door</h2>
+            </div>
+            <ul>
+              <li class="fragment"><code>staged-recipes</code> is a holding area for recipes destined to become their own feedstock &mdash; every package on conda-forge went through it</li>
+              <li class="fragment">Flow: fork &rarr; branch off <code>main</code> &rarr; add a recipe under <code>recipes/&lt;your-package&gt;/</code> &rarr; open a PR &rarr; CI builds it on Linux/macOS/Windows &rarr; review &rarr; merge</li>
+              <li class="fragment">Once merged, CI automatically creates a new <code>&lt;package&gt;-feedstock</code> repo and triggers the first build</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== 13. Two column – Generating a recipe ==================== -->
+        <section data-label="Submitting – Generating a recipe">
+          <div class="cf-slide cf-slide--split">
+            <div>
+              <span class="cf-eyebrow">Getting started</span>
+              <h2>Generating a recipe</h2>
+            </div>
+            <div class="cf-cols">
+              <div class="cf-col">
+                <h3>Use a generator</h3>
+                <p class="cf-muted">Python packages on PyPI &mdash; <code>grayskull pypi --use-v1-format &lt;package&gt;</code>. R packages on CRAN &mdash; the <code>conda_r_skeleton_helper</code> script.</p>
+              </div>
+              <div class="cf-col">
+                <h3>Start from the example</h3>
+                <p class="cf-muted">Anything else &mdash; copy <code>recipes/example-v1/recipe.yaml</code> and edit by hand, following the section order and removing the explainer comments.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 14. Code – recipe/recipe.yaml =========================== -->
+        <section data-label="Submitting – Code: recipe.yaml">
           <div class="cf-slide">
             <div>
               <span class="cf-eyebrow">Example</span>
-              <h2>Code block</h2>
+              <h2>Anatomy of a recipe</h2>
             </div>
-            <span class="cf-code-title">recipe/meta.yaml</span>
-            <pre class="cf-dark"><code class="language-yaml" data-trim data-line-numbers>package:
-  name: example-package
-  version: 0.3.1
+            <span class="cf-code-title">recipe/recipe.yaml</span>
+            <pre class="cf-dark"><code class="language-yaml" data-trim data-line-numbers>context:
+  version: "3.8.2"
+
+package:
+  name: simplejson
+  version: ${{ version }}
 
 source:
-  url: https://example.org/example-{{ version }}.tar.gz
-  sha256: 0000000000000000000000000000000000000000000000000000000000000000
+  url: https://pypi.org/packages/source/s/simplejson/simplejson-${{ version }}.tar.gz
+  sha256: d58439c548433adcda98e695be53e526ba940a4b9c44fb9a05d92cd495cdd47f
 
 build:
+  script: python -m pip install . -vv
   number: 0
-  noarch: python</code></pre>
+
+requirements:
+  host:
+    - python
+    - pip
+    - setuptools
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - simplejson
+      pip_check: true
+
+about:
+  homepage: https://github.com/simplejson/simplejson
+  license: MIT
+  license_file: LICENSE.txt</code></pre>
           </div>
-          <aside class="notes">Syntax highlighting comes from the reveal.js highlight plugin; token colors are defined in theme/conda-forge.css.</aside>
+          <aside class="notes">Note the ${{ ... }} Jinja-in-YAML syntax. The sha256 should come from the tarball itself (curl -sL &lt;url&gt; | openssl sha256), never a repo checksum.</aside>
         </section>
 
-        <!-- ===== 9. Table ============================================== -->
-        <section data-label="Table">
+        <!-- ===== 15. Table – requirements: build / host / run ============ -->
+        <section data-label="Submitting – build/host/run table">
           <div class="cf-slide">
             <div>
-              <span class="cf-eyebrow">Detail</span>
-              <h2>Table</h2>
+              <span class="cf-eyebrow">Dependencies</span>
+              <h2>requirements: build / host / run</h2>
             </div>
             <table>
               <thead>
                 <tr>
-                  <th>Item</th>
-                  <th>Description</th>
-                  <th class="cf-num">Value</th>
+                  <th>Section</th>
+                  <th>What goes here</th>
+                  <th>Typical examples</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Lorem</td>
-                  <td>Consectetur adipiscing elit</td>
-                  <td class="cf-num">128</td>
+                  <td><code>build</code></td>
+                  <td>Tools needed only while building, not on the host</td>
+                  <td>Compilers, <code>cmake</code>, <code>make</code>, <code>pkg-config</code></td>
                 </tr>
                 <tr>
-                  <td>Ipsum</td>
-                  <td>Sed do eiusmod tempor</td>
-                  <td class="cf-num">64</td>
+                  <td><code>host</code></td>
+                  <td>Present alongside the package at build time</td>
+                  <td>Shared C/C++ libraries, <code>python</code>/<code>r-base</code>, <code>pip</code>, <code>setuptools</code></td>
                 </tr>
                 <tr>
-                  <td>Dolor</td>
-                  <td>Ut labore et dolore magna</td>
-                  <td class="cf-num">32</td>
+                  <td><code>run</code></td>
+                  <td>Needed only when the package runs</td>
+                  <td>Most Python/R runtime libraries</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <aside class="notes">As a rule, all dependencies must themselves be packaged on conda-forge, to guarantee ABI compatibility across the ecosystem.</aside>
+        </section>
+
+        <!-- ===== 16. Bulleted – Every recipe needs tests ================= -->
+        <section data-label="Submitting – Every recipe needs tests">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Quality bar</span>
+              <h2>Every recipe needs tests</h2>
+            </div>
+            <ul>
+              <li class="fragment">At minimum: existence tests &mdash; verify the package installed the files you expect (<code>package_contents</code> in v1)</li>
+              <li class="fragment">Python packages: a <code>python:</code> test with <code>imports:</code> + automatic <code>pip_check: true</code></li>
+              <li class="fragment">R packages: an <code>r:</code> test with <code>libraries:</code></li>
+              <li class="fragment">Command-line tools: run <code>&lt;tool&gt; --help</code> to prove it's on <code>PATH</code> and executable</li>
+              <li class="fragment">The goal is testing that <em>the conda package</em> built and installed correctly &mdash; not re-running the upstream project's full test suite</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== 17. Bulleted – Before you open the PR =================== -->
+        <section data-label="Submitting – Before you open the PR">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Checklist</span>
+              <h2>Before you open the PR</h2>
+            </div>
+            <ul>
+              <li class="fragment">License uses the correct SPDX identifier and case (<code>Apache-2.0</code>, not <code>APACHE 2.0</code>)</li>
+              <li class="fragment">A <code>license_file</code> is included, unless the upstream tarball already ships one</li>
+              <li class="fragment">Build from a tarball (<code>url:</code>), never <code>git_url:</code> &mdash; tarballs are checksummable and smaller</li>
+              <li class="fragment">Remove the example's explainer comments from your copy of the recipe</li>
+              <li class="fragment">Leave the <code>recipes/example-v1/</code> folder itself untouched</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== 18. Two column – Review, merge, feedstock =============== -->
+        <section data-label="Submitting – Review to feedstock">
+          <div class="cf-slide cf-slide--split">
+            <div>
+              <span class="cf-eyebrow">What happens next</span>
+              <h2>Review &rarr; merge &rarr; feedstock</h2>
+            </div>
+            <div class="cf-cols">
+              <div class="cf-col">
+                <h3>Getting reviewed</h3>
+                <p class="cf-muted">Mention the appropriate language team (e.g. <code>@conda-forge/help-python</code>) in a PR comment; first-time contributors can ask a bot to ping the team for them.</p>
+              </div>
+              <div class="cf-col">
+                <h3>After merge</h3>
+                <p class="cf-muted">CI creates <code>&lt;package&gt;-feedstock</code> automatically, triggers the first build, uploads to anaconda.org/conda-forge, and invites you to the conda-forge GitHub org with commit rights on your new feedstock.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 19. Bulleted – Congrats, you're a maintainer ============ -->
+        <section data-label="Submitting – Congrats you're a maintainer">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">What's next</span>
+              <h2>Congrats, you're a maintainer</h2>
+            </div>
+            <ul>
+              <li class="fragment">Merge routine maintenance PRs opened by conda-forge's bots</li>
+              <li class="fragment">Bump the version + checksum whenever upstream releases</li>
+              <li class="fragment">Keep <code>requirements</code> accurate as the package's dependencies change</li>
+              <li class="fragment">Answer questions on the feedstock's issue tracker</li>
+            </ul>
+          </div>
+          <aside class="notes">None of this works without the volunteers reviewing every PR that comes through staged-recipes &mdash; that's our next section.</aside>
+        </section>
+
+        <!-- ===== 20. Section divider: Get involved ======================= -->
+        <section data-label="Section divider – Get involved" data-state="bare" data-background-gradient="var(--cf-gradient)">
+          <div class="cf-slide cf-slide--divider">
+            <span class="cf-section-no">03</span>
+            <h2>Get involved: review staged recipes</h2>
+            <p>The community that keeps the front door open</p>
+          </div>
+        </section>
+
+        <!-- ===== 21. Bulleted – staged-recipes always needs reviewers ==== -->
+        <section data-label="Get involved – Reviewers always needed">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Why it matters</span>
+              <h2>staged-recipes always needs reviewers</h2>
+            </div>
+            <ul>
+              <li class="fragment">It's one of the highest-traffic repos in conda-forge &mdash; every new package waits here for a review</li>
+              <li class="fragment">Review times vary from days to weeks depending on how many volunteers are active on a given language team</li>
+              <li class="fragment">Straight from the maintainers: &ldquo;We are always looking for more staged-recipe reviewers&rdquo;</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== 22. Table – Review teams by language ==================== -->
+        <section data-label="Get involved – Review teams table">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Community</span>
+              <h2>Review teams by language</h2>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Language</th>
+                  <th>GitHub team</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>c/c++</strong></td>
+                  <td><code>@conda-forge/help-c-cpp</code></td>
+                  <td><strong>High need for reviewers</strong></td>
+                </tr>
+                <tr>
+                  <td>go</td>
+                  <td><code>@conda-forge/help-go</code></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td><strong>java</strong></td>
+                  <td><code>@conda-forge/help-java</code></td>
+                  <td><strong>High need for reviewers</strong></td>
+                </tr>
+                <tr>
+                  <td>Julia</td>
+                  <td><code>@conda-forge/help-julia</code></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>nodejs</td>
+                  <td><code>@conda-forge/help-nodejs</code></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>perl</td>
+                  <td><code>@conda-forge/help-perl</code></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>python</td>
+                  <td><code>@conda-forge/help-python</code></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>python/c hybrid</td>
+                  <td><code>@conda-forge/help-python-c</code></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td><strong>r</strong></td>
+                  <td><code>@conda-forge/help-r</code></td>
+                  <td><strong>High need for reviewers</strong></td>
+                </tr>
+                <tr>
+                  <td>ruby</td>
+                  <td><code>@conda-forge/help-ruby</code></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>rust</td>
+                  <td><code>@conda-forge/help-rust</code></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>other</td>
+                  <td><code>@conda-forge/staged-recipes</code></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
           </div>
         </section>
 
-        <!-- ===== 10. Full-bleed image ================================== -->
-        <!-- The image is the section background so it fills the whole viewport.
-             For a real photo replace the gradient attribute with:
-               data-background-image="assets/photo.jpg" data-background-size="cover" -->
-        <section data-label="Full-bleed image" data-state="bare" data-background-gradient="var(--cf-gradient)">
-          <div class="cf-slide cf-slide--bleed">
-            <div class="cf-bleed-caption">
-              <span class="cf-eyebrow">Full bleed</span>
-              <h2>Caption sits over a protection gradient</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <!-- ===== 23. Bulleted – Why C/C++, R, and Java need you (placeholder) -->
+        <!-- TODO: Travis to fill in with personal conda-forge review experience -->
+        <section data-label="Get involved – Why C/C++, R, Java need you (placeholder)">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">The gap</span>
+              <h2>Why C/C++, R, and Java need you</h2>
             </div>
+            <ul>
+              <li class="fragment">These ecosystems tend to have more compiler-heavy, platform-specific build logic (native toolchains, Rtools/CRAN quirks, JDK/build-tool versioning) than pure-Python recipes</li>
+              <li class="fragment">Fewer reviewers are comfortable evaluating those recipes, so PRs in these languages wait longer</li>
+              <li class="fragment">TODO: add your own examples here</li>
+            </ul>
           </div>
         </section>
 
-        <!-- ===== 11. Section divider =================================== -->
-        <section data-label="Section divider 2" data-state="bare" data-background-gradient="var(--cf-gradient)">
-          <div class="cf-slide cf-slide--divider">
-            <span class="cf-section-no">02</span>
-            <h2>Next section title</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <!-- ===== 24. Bulleted – How to join a review team (placeholder) == -->
+        <!-- TODO: Travis to fill in with personal notes on onboarding as a reviewer -->
+        <section data-label="Get involved – How to join a review team (placeholder)">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Volunteering</span>
+              <h2>How to join a review team</h2>
+            </div>
+            <ul>
+              <li class="fragment">Interested volunteers can reach out to a member of <code>@conda-forge/core</code></li>
+              <li class="fragment">TODO: add your own notes here</li>
+            </ul>
           </div>
         </section>
 
-        <!-- ===== 12. Closing =========================================== -->
+        <!-- ===== 25. Bulleted – What reviewing looks like day to day (placeholder) -->
+        <!-- TODO: fully blank on purpose — Travis will fill this in live from personal experience -->
+        <section data-label="Get involved – What reviewing looks like (placeholder)">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">In practice</span>
+              <h2>What reviewing looks like day to day</h2>
+            </div>
+            <ul>
+              <li class="fragment">TODO: fill in from your own conda-forge review experience</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== 26. Closing =========================================== -->
         <section data-label="Thank you" data-state="bare" data-background-gradient="var(--cf-gradient)">
           <div class="cf-slide cf-slide--end">
             <h2>Thank you</h2>
@@ -239,6 +551,7 @@ build:
               <a href="https://conda-forge.org/">conda-forge.org</a>
               <a href="https://github.com/conda-forge">github.com/conda-forge</a>
               <a href="https://conda-forge.zulipchat.com/">conda-forge.zulipchat.com</a>
+              <a href="https://github.com/conda-forge/staged-recipes">github.com/conda-forge/staged-recipes</a>
             </div>
           </div>
         </section>
