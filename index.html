@@ -9,6 +9,7 @@
     .cf-slide--divider   section divider, gradient background
     (default)            bulleted content
     .cf-slide--split     two columns
+    .cf-slide--grid      2x2 grid: .cf-cols with four .cf-col or .cf-card children
     .cf-slide--stat      one big figure, or .cf-stat-row for three
     .cf-slide--quote     pull quote
     (default) + <pre>    code
@@ -41,6 +42,12 @@
     <!-- main.js imports reveal's CSS followed by theme/conda-forge.css and
          initializes reveal; do not add a separate theme <link> here. -->
     <script type="module" src="./main.js"></script>
+
+    <style>
+      .reveal ul, .reveal ol {
+        max-width: 60ch;
+      }
+    </style>
   </head>
 
   <body>
@@ -52,7 +59,7 @@
             <img class="cf-logo cf-watermark--light" src="assets/anvil-light.svg" alt="conda-forge" />
             <img class="cf-logo cf-watermark--dark" src="assets/anvil-dark.svg" alt="conda-forge" />
             <h1>Join the forge!</h1>
-            <p class="cf-lede">Where conda-forge came from, how to submit a recipe, and how to help review one</p>
+            <p class="cf-lede">History of conda-forge, adding your recipes, and how to get involved</p>
             <hr class="cf-rule" />
             <div class="cf-title-meta">
               <span>Travis Hathaway</span>
@@ -72,6 +79,28 @@
           </div>
         </section>
 
+        <section>
+          <div class="cf-slide cf-slide--grid">
+            <h2>It's 2012...</h2>
+            <div class="cf-cols">
+              <div class="cf-media fragment cf-card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/Carly_Rae_Jepsen_-_Call_Me_Maybe.png"
+                     alt="Call Me Maybe" height="300" width="300" />
+              </div>
+              <div class="cf-media fragment cf-card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/Gangnam_Style_Official_Cover.png"
+                     alt="Gangam Style" />
+              </div>
+              <div class="fragment cf-card">
+                <h3 style="text-align: center; line-height: 4rem">You're still <br />writing <strong>Python 2.7</strong></h3>
+              </div>
+              <div class="fragment cf-card">
+                <h3 style="text-align: center; line-height: 4rem">You're still <br/>compiling  everything <br/>by hand 🤯</h3>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- ===== 3. Bulleted – Python packaging before conda ============ -->
         <section data-label="History – Python before conda">
           <div class="cf-slide">
@@ -80,7 +109,6 @@
               <h2>Python packaging before conda</h2>
             </div>
             <ul>
-              <li class="fragment">Early 2010s: Python 2.x was the norm; installers came from python.org, Python(x,y), ActiveState, or Enthought's EPD/Canopy</li>
               <li class="fragment">The community was moving from <code>easy_install</code>/eggs to <code>pip</code>, but there was no easy way to ship pre-compiled packages</li>
               <li class="fragment">Wheels weren't formalized until 2013 (PEP 427); on Windows, Christoph Gohlke's builds were often your only option</li>
               <li class="fragment">Linux users had to compile from source &mdash; <code>manylinux</code> wheels didn't exist until PEP 513 in 2016</li>
@@ -95,18 +123,29 @@
               <span class="cf-eyebrow">Binary compatibility</span>
               <h2>Why building from source was the default</h2>
             </div>
-            <div class="cf-cols">
+            <div class="cf-cols cf-cols--60-40">
               <div class="cf-col">
-                <h3>numpy 1.7.0 (Feb 2013)</h3>
-                <p class="cf-muted">Only a few Windows <code>.exe</code> installers, no macOS wheels, no manylinux wheels &mdash; those didn't land until April 2016.</p>
+                <p><strong>numpy 1.7.0 on PyPI (Feb 2013):</strong> source tarball + six 32-bit Windows <code>.exe</code> installers. Nothing for macOS or Linux.</p>
+                <ul>
+                  <li><strong>Jun 2014</strong> &mdash; first macOS wheel (1.8.1)</li>
+                  <li><strong>Mar 2016</strong> &mdash; first 64-bit Windows wheel (1.10.4)</li>
+                  <li><strong>Apr 2016</strong> &mdash; first Linux wheels, <code>manylinux1</code> (1.11.0)</li>
+                </ul>
+                <p class="cf-muted">Until then, <code>pip install numpy</code> on Linux meant a C compiler, <code>gfortran</code>, and a BLAS/LAPACK you had to find yourself.</p>
               </div>
-              <div class="cf-col">
-                <h3>numpy 1.11.0 (Mar 2016)</h3>
-                <p class="cf-muted">Wheels for all platforms.</p>
+              <div class="cf-media cf-media--diagonal">
+                <img src="assets/gcc-logo.svg" alt="GCC logo" style="width: 300px; margin-top: -300px" />
+                <img src="assets/fortran-logo.svg" alt="Fortran logo" style="margin-top: 150px"/>
               </div>
             </div>
           </div>
-          <aside class="notes">Binary compatibility depends on matching compiler + core library (glibc) versions between the build machine and the destination machine. Linux distros freeze these per release, which is why cross-distro binaries are fragile.</aside>
+          <aside class="notes">
+            Dates are upload times of the numpy files on PyPI.
+            1.7.0 only had win32 installers for py2.5&ndash;3.3; its manylinux wheels were backfilled in April 2016.
+            Linux wheels needed PEP 513 (manylinux1) and pip 8.1 support, which is why they took so long.
+            Binary compatibility depends on matching compiler + core library (glibc) versions between the build machine and the destination machine.
+            Linux distros freeze these per release, which is why cross-distro binaries are fragile.
+          </aside>
         </section>
 
         <!-- ===== 5. Bulleted – Enter conda (2012-2013) =================== -->
@@ -172,6 +211,19 @@
           </div>
         </section>
 
+        <!-- ===== 10b. Chart – Feedstock growth ========================== -->
+        <section data-label="History – Feedstock growth">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Growth</span>
+              <h2>Feedstocks over time</h2>
+            </div>
+            <div class="cf-chart">
+              <canvas id="feedstock-chart" aria-label="Line chart of conda-forge feedstock count by month, 2016 to today"></canvas>
+            </div>
+          </div>
+        </section>
+
         <!-- ===== 10. Three figures – conda-forge today =================== -->
         <section data-label="History – conda-forge today">
           <div class="cf-slide">
@@ -185,13 +237,52 @@
                 <p class="cf-small">packages</p>
               </div>
               <div class="cf-col">
-                <span class="cf-stat">100s</span>
-                <p class="cf-small">active maintainers</p>
+                <span class="cf-stat">8,000+</span>
+                <p class="cf-small">maintainers</p>
               </div>
               <div class="cf-col">
                 <span class="cf-stat">10+</span>
                 <p class="cf-small">years old (since 2015)</p>
               </div>
+            </div>
+            <div class="cf-stat-row" style="margin-top: 3rem">
+              <div class="cf-col">
+                <span class="cf-stat">27</span>
+                <p class="cf-small">core team members</p>
+              </div>
+              <div class="cf-col">
+                <span class="cf-stat">27</span>
+                <p class="cf-small">enhancement proposals (CFEPs)</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 10a. Stats + chart – Where maintainers are =============== -->
+        <!-- Countries parsed from the free-text GitHub "location" field in
+             maintainer-info.json; tally lives in maintainer-countries.json. -->
+        <section data-label="History – A global community">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">Where we are now</span>
+              <h2>A global community</h2>
+            </div>
+            <div class="cf-stat-row">
+              <div class="cf-col">
+                <span class="cf-stat">79</span>
+                <p class="cf-small">countries &amp; territories</p>
+              </div>
+              <div class="cf-col">
+                <span class="cf-stat">63%</span>
+                <p class="cf-small">of maintainers are outside the US</p>
+              </div>
+              <div class="cf-col">
+                <span class="cf-stat">4,900+</span>
+                <p class="cf-small">maintainers list a location</p>
+              </div>
+            </div>
+            <div class="cf-chart">
+              <canvas id="countries-chart" aria-label="Bar chart of the ten countries with the most conda-forge maintainers"></canvas>
             </div>
           </div>
         </section>
@@ -248,39 +339,75 @@
               <h2>Anatomy of a recipe</h2>
             </div>
             <span class="cf-code-title">recipe/recipe.yaml</span>
-            <pre class="cf-dark"><code class="language-yaml" data-trim data-line-numbers>context:
-  version: "3.8.2"
+            <pre class="cf-dark"><code class="language-yaml" data-trim data-line-numbers>
+context:
+  name: zensus2pgsql
+  version: 0.2.1
+  python_min: "3.10"
 
 package:
-  name: simplejson
+  name: ${{ name|lower }}
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/s/simplejson/simplejson-${{ version }}.tar.gz
-  sha256: d58439c548433adcda98e695be53e526ba940a4b9c44fb9a05d92cd495cdd47f
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/zensus2pgsql-${{ version }}.tar.gz
+  sha256: 00517129cf7747e7580f57c680e143de5e5accca928407cd79bc88c114502ec5
 
 build:
-  script: python -m pip install . -vv
   number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - zensus2pgsql = zensus2pgsql.cli:app
+      - zpg = zensus2pgsql.cli:app
 
 requirements:
   host:
-    - python
+    - python ==${{ python_min }}
+    - hatchling >=1.27.0
     - pip
-    - setuptools
   run:
-    - python
+    - python >=${{ python_min }}
+    - aiocsv >=1.4.0
+    - aiofiles >=25.1.0
+    - asyncpg >=0.30.0
+    - httpx >=0.28.1
+    - platformdirs >=4.5.0
+    - rich >=14.2.0
+    - typer >=0.15.1
+    - types-aiofiles >=25.1.0.20251011
 
 tests:
   - python:
       imports:
-        - simplejson
+        - zensus2pgsql
+        - zensus2pgsql.commands.create
+        - zensus2pgsql.commands.cache
+        - zensus2pgsql.commands.drop
+        - zensus2pgsql.commands.list
+        - zensus2pgsql.cache
+        - zensus2pgsql.constants
+        - zensus2pgsql.errors
+        - zensus2pgsql.logging
+        - zensus2pgsql.retry
       pip_check: true
+  - requirements:
+      run:
+        - python ==${{ python_min }}
+    script:
+      - zensus2pgsql --help
+      - zpg --help
 
 about:
-  homepage: https://github.com/simplejson/simplejson
-  license: MIT
-  license_file: LICENSE.txt</code></pre>
+  summary: A Python CLI program that collects Zensus GIS data from Germany and imports it into PostgreSQL
+  license: GPL-3.0-only
+  license_file: COPYING
+  homepage: https://travishathaway.github.io/zensus2pgsql
+
+extra:
+  recipe-maintainers:
+    - travishathaway</code></pre>
           </div>
           <aside class="notes">Note the ${{ ... }} Jinja-in-YAML syntax. The sha256 should come from the tarball itself (curl -sL &lt;url&gt; | openssl sha256), never a repo checksum.</aside>
         </section>

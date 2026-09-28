@@ -1,0 +1,318 @@
+[
+  {
+    "country": "United States",
+    "maintainers": 1836
+  },
+  {
+    "country": "Germany",
+    "maintainers": 587
+  },
+  {
+    "country": "United Kingdom",
+    "maintainers": 413
+  },
+  {
+    "country": "France",
+    "maintainers": 331
+  },
+  {
+    "country": "Canada",
+    "maintainers": 182
+  },
+  {
+    "country": "Switzerland",
+    "maintainers": 173
+  },
+  {
+    "country": "Netherlands",
+    "maintainers": 172
+  },
+  {
+    "country": "Australia",
+    "maintainers": 115
+  },
+  {
+    "country": "Spain",
+    "maintainers": 87
+  },
+  {
+    "country": "Italy",
+    "maintainers": 85
+  },
+  {
+    "country": "Japan",
+    "maintainers": 74
+  },
+  {
+    "country": "China",
+    "maintainers": 74
+  },
+  {
+    "country": "Sweden",
+    "maintainers": 73
+  },
+  {
+    "country": "Brazil",
+    "maintainers": 62
+  },
+  {
+    "country": "Denmark",
+    "maintainers": 60
+  },
+  {
+    "country": "Norway",
+    "maintainers": 56
+  },
+  {
+    "country": "India",
+    "maintainers": 55
+  },
+  {
+    "country": "Austria",
+    "maintainers": 48
+  },
+  {
+    "country": "Belgium",
+    "maintainers": 47
+  },
+  {
+    "country": "Finland",
+    "maintainers": 36
+  },
+  {
+    "country": "Poland",
+    "maintainers": 35
+  },
+  {
+    "country": "New Zealand",
+    "maintainers": 24
+  },
+  {
+    "country": "Portugal",
+    "maintainers": 21
+  },
+  {
+    "country": "Czech Republic",
+    "maintainers": 20
+  },
+  {
+    "country": "Israel",
+    "maintainers": 20
+  },
+  {
+    "country": "Singapore",
+    "maintainers": 18
+  },
+  {
+    "country": "Russia",
+    "maintainers": 14
+  },
+  {
+    "country": "Mexico",
+    "maintainers": 14
+  },
+  {
+    "country": "Argentina",
+    "maintainers": 13
+  },
+  {
+    "country": "Slovenia",
+    "maintainers": 11
+  },
+  {
+    "country": "Ireland",
+    "maintainers": 10
+  },
+  {
+    "country": "South Korea",
+    "maintainers": 10
+  },
+  {
+    "country": "Colombia",
+    "maintainers": 10
+  },
+  {
+    "country": "South Africa",
+    "maintainers": 9
+  },
+  {
+    "country": "Ukraine",
+    "maintainers": 9
+  },
+  {
+    "country": "Türkiye",
+    "maintainers": 9
+  },
+  {
+    "country": "Hungary",
+    "maintainers": 8
+  },
+  {
+    "country": "Hong Kong",
+    "maintainers": 7
+  },
+  {
+    "country": "Taiwan",
+    "maintainers": 7
+  },
+  {
+    "country": "Greece",
+    "maintainers": 7
+  },
+  {
+    "country": "United Arab Emirates",
+    "maintainers": 6
+  },
+  {
+    "country": "Luxembourg",
+    "maintainers": 5
+  },
+  {
+    "country": "Chile",
+    "maintainers": 5
+  },
+  {
+    "country": "Saudi Arabia",
+    "maintainers": 5
+  },
+  {
+    "country": "Bulgaria",
+    "maintainers": 4
+  },
+  {
+    "country": "Estonia",
+    "maintainers": 4
+  },
+  {
+    "country": "Vietnam",
+    "maintainers": 4
+  },
+  {
+    "country": "Iceland",
+    "maintainers": 3
+  },
+  {
+    "country": "Croatia",
+    "maintainers": 3
+  },
+  {
+    "country": "Romania",
+    "maintainers": 3
+  },
+  {
+    "country": "Egypt",
+    "maintainers": 2
+  },
+  {
+    "country": "Morocco",
+    "maintainers": 2
+  },
+  {
+    "country": "Uruguay",
+    "maintainers": 2
+  },
+  {
+    "country": "Nepal",
+    "maintainers": 2
+  },
+  {
+    "country": "Tanzania",
+    "maintainers": 2
+  },
+  {
+    "country": "Kenya",
+    "maintainers": 2
+  },
+  {
+    "country": "Malaysia",
+    "maintainers": 2
+  },
+  {
+    "country": "Thailand",
+    "maintainers": 2
+  },
+  {
+    "country": "Nigeria",
+    "maintainers": 2
+  },
+  {
+    "country": "Réunion",
+    "maintainers": 2
+  },
+  {
+    "country": "Greenland",
+    "maintainers": 1
+  },
+  {
+    "country": "Algeria",
+    "maintainers": 1
+  },
+  {
+    "country": "Paraguay",
+    "maintainers": 1
+  },
+  {
+    "country": "Serbia",
+    "maintainers": 1
+  },
+  {
+    "country": "Georgia",
+    "maintainers": 1
+  },
+  {
+    "country": "Peru",
+    "maintainers": 1
+  },
+  {
+    "country": "Latvia",
+    "maintainers": 1
+  },
+  {
+    "country": "Côte d'Ivoire",
+    "maintainers": 1
+  },
+  {
+    "country": "Uganda",
+    "maintainers": 1
+  },
+  {
+    "country": "Armenia",
+    "maintainers": 1
+  },
+  {
+    "country": "Ethiopia",
+    "maintainers": 1
+  },
+  {
+    "country": "Bangladesh",
+    "maintainers": 1
+  },
+  {
+    "country": "Moldova",
+    "maintainers": 1
+  },
+  {
+    "country": "Slovakia",
+    "maintainers": 1
+  },
+  {
+    "country": "Indonesia",
+    "maintainers": 1
+  },
+  {
+    "country": "Kyrgyzstan",
+    "maintainers": 1
+  },
+  {
+    "country": "Pakistan",
+    "maintainers": 1
+  },
+  {
+    "country": "Costa Rica",
+    "maintainers": 1
+  },
+  {
+    "country": "Sri Lanka",
+    "maintainers": 1
+  }
+]

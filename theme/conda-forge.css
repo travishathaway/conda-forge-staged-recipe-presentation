@@ -39,6 +39,7 @@
   --cf-surface: #f2f9f8;
   --cf-ink: #1b1b1b;
   --cf-ink-muted: #4b5c59;
+  --cf-ink-subtle: #8a9895;
   --cf-rule: #d3e6e3;
   --cf-accent: var(--cf-primary);
   --cf-on-accent: #ffffff;
@@ -51,7 +52,7 @@
   --cf-type-body: 34px;
   --cf-type-small: 28px;
   --cf-type-micro: 24px;
-  --cf-type-stat: 216px;
+  --cf-type-stat: 150px;
 
   /* --- Spacing -------------------------------------------------------- */
   --cf-pad-x: 120px;
@@ -83,6 +84,7 @@
   --cf-surface: #232827;
   --cf-ink: #f1f6f5;
   --cf-ink-muted: #a6c1bd;
+  --cf-ink-subtle: #71857f;
   --cf-rule: #33403e;
   --cf-accent: var(--cf-teal-300);
   --cf-on-accent: #06302b;
@@ -156,18 +158,26 @@ body {
 .reveal h1 {
   font-size: var(--cf-type-hero);
   font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .reveal h2 {
   font-size: var(--cf-type-title);
   font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .reveal h3 {
   font-size: var(--cf-type-subtitle);
   font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .reveal h4 {
   font-size: var(--cf-type-body);
   font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .reveal p {
@@ -247,7 +257,7 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
-  max-width: 34ch;
+  max-width: 60ch;
 }
 
 .reveal ul li,
@@ -351,6 +361,61 @@ body {
   align-content: start;
 }
 
+/* Uneven split: text 60%, media 40%. */
+.cf-slide--split .cf-cols--60-40 {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 64px;
+  align-content: stretch;
+}
+
+/* Two images stepped along a diagonal: first top-left, second bottom-right. */
+.cf-media--diagonal {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.cf-media--diagonal img:nth-child(2) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* ==========================================================================
+   Layout: 2x2 grid
+   Four .cf-col (or .cf-card) children fill the space below the heading.
+   ========================================================================== */
+
+.cf-slide--grid .cf-cols {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 48px 96px;
+}
+
+.cf-slide--grid .cf-card {
+  gap: 16px;
+  padding: 40px;
+}
+
+/* A cell holding a single image, centered and scaled to fit. */
+.cf-media {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cf-media img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  object-fit: contain;
+}
+
 .cf-col {
   display: flex;
   flex-direction: column;
@@ -398,6 +463,18 @@ body {
 }
 
 /* ==========================================================================
+   Layout: chart
+   Chart.js fills this box (responsive, maintainAspectRatio: false), so it
+   needs a definite height: flex:1 takes whatever the title leaves over.
+   ========================================================================== */
+
+.cf-chart {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ==========================================================================
    Layout: quote
    Section carries data-background-color="var(--cf-surface)".
    ========================================================================== */
@@ -415,12 +492,12 @@ body {
   background: none;
   font-family: var(--r-heading-font);
   font-weight: 500;
-  font-size: 64px;
+  font-size: 36px;
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--cf-ink);
   font-style: normal;
-  max-width: 30ch;
+  max-width: 48ch;
 }
 
 .cf-attrib {
@@ -453,7 +530,7 @@ body {
   background: var(--cf-code-bg);
   border: 1px solid var(--cf-rule);
   border-radius: 20px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .reveal pre code {

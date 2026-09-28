@@ -1,0 +1,514 @@
+[
+  {
+    "date": "2016-01-31",
+    "feedstock_count": 7
+  },
+  {
+    "date": "2016-02-29",
+    "feedstock_count": 26
+  },
+  {
+    "date": "2016-03-31",
+    "feedstock_count": 209
+  },
+  {
+    "date": "2016-04-30",
+    "feedstock_count": 437
+  },
+  {
+    "date": "2016-05-31",
+    "feedstock_count": 575
+  },
+  {
+    "date": "2016-06-30",
+    "feedstock_count": 700
+  },
+  {
+    "date": "2016-07-31",
+    "feedstock_count": 902
+  },
+  {
+    "date": "2016-08-31",
+    "feedstock_count": 1062
+  },
+  {
+    "date": "2016-09-30",
+    "feedstock_count": 1202
+  },
+  {
+    "date": "2016-10-31",
+    "feedstock_count": 1331
+  },
+  {
+    "date": "2016-11-30",
+    "feedstock_count": 1457
+  },
+  {
+    "date": "2016-12-31",
+    "feedstock_count": 1529
+  },
+  {
+    "date": "2017-01-31",
+    "feedstock_count": 1656
+  },
+  {
+    "date": "2017-02-28",
+    "feedstock_count": 1829
+  },
+  {
+    "date": "2017-03-31",
+    "feedstock_count": 1960
+  },
+  {
+    "date": "2017-04-30",
+    "feedstock_count": 2260
+  },
+  {
+    "date": "2017-05-31",
+    "feedstock_count": 2509
+  },
+  {
+    "date": "2017-06-30",
+    "feedstock_count": 2624
+  },
+  {
+    "date": "2017-07-31",
+    "feedstock_count": 2767
+  },
+  {
+    "date": "2017-08-31",
+    "feedstock_count": 2806
+  },
+  {
+    "date": "2017-09-30",
+    "feedstock_count": 3260
+  },
+  {
+    "date": "2017-10-31",
+    "feedstock_count": 3399
+  },
+  {
+    "date": "2017-11-30",
+    "feedstock_count": 3526
+  },
+  {
+    "date": "2017-12-31",
+    "feedstock_count": 3666
+  },
+  {
+    "date": "2018-01-31",
+    "feedstock_count": 3861
+  },
+  {
+    "date": "2018-02-28",
+    "feedstock_count": 4105
+  },
+  {
+    "date": "2018-03-31",
+    "feedstock_count": 4316
+  },
+  {
+    "date": "2018-04-30",
+    "feedstock_count": 4492
+  },
+  {
+    "date": "2018-05-31",
+    "feedstock_count": 4678
+  },
+  {
+    "date": "2018-06-30",
+    "feedstock_count": 4836
+  },
+  {
+    "date": "2018-07-31",
+    "feedstock_count": 4990
+  },
+  {
+    "date": "2018-08-31",
+    "feedstock_count": 5171
+  },
+  {
+    "date": "2018-09-30",
+    "feedstock_count": 5292
+  },
+  {
+    "date": "2018-10-31",
+    "feedstock_count": 5447
+  },
+  {
+    "date": "2018-11-30",
+    "feedstock_count": 5543
+  },
+  {
+    "date": "2018-12-31",
+    "feedstock_count": 5847
+  },
+  {
+    "date": "2019-01-31",
+    "feedstock_count": 6110
+  },
+  {
+    "date": "2019-02-28",
+    "feedstock_count": 6268
+  },
+  {
+    "date": "2019-03-31",
+    "feedstock_count": 6455
+  },
+  {
+    "date": "2019-04-30",
+    "feedstock_count": 6599
+  },
+  {
+    "date": "2019-05-31",
+    "feedstock_count": 6817
+  },
+  {
+    "date": "2019-06-30",
+    "feedstock_count": 6990
+  },
+  {
+    "date": "2019-07-31",
+    "feedstock_count": 7266
+  },
+  {
+    "date": "2019-08-31",
+    "feedstock_count": 7636
+  },
+  {
+    "date": "2019-09-30",
+    "feedstock_count": 7975
+  },
+  {
+    "date": "2019-10-31",
+    "feedstock_count": 8261
+  },
+  {
+    "date": "2019-11-30",
+    "feedstock_count": 8586
+  },
+  {
+    "date": "2019-12-31",
+    "feedstock_count": 8739
+  },
+  {
+    "date": "2020-01-31",
+    "feedstock_count": 8934
+  },
+  {
+    "date": "2020-02-29",
+    "feedstock_count": 9143
+  },
+  {
+    "date": "2020-03-31",
+    "feedstock_count": 9357
+  },
+  {
+    "date": "2020-04-30",
+    "feedstock_count": 9568
+  },
+  {
+    "date": "2020-05-31",
+    "feedstock_count": 9856
+  },
+  {
+    "date": "2020-06-30",
+    "feedstock_count": 10116
+  },
+  {
+    "date": "2020-07-31",
+    "feedstock_count": 10337
+  },
+  {
+    "date": "2020-08-31",
+    "feedstock_count": 10548
+  },
+  {
+    "date": "2020-09-30",
+    "feedstock_count": 10776
+  },
+  {
+    "date": "2020-10-31",
+    "feedstock_count": 10976
+  },
+  {
+    "date": "2020-11-30",
+    "feedstock_count": 11275
+  },
+  {
+    "date": "2020-12-31",
+    "feedstock_count": 11478
+  },
+  {
+    "date": "2021-01-31",
+    "feedstock_count": 11717
+  },
+  {
+    "date": "2021-02-28",
+    "feedstock_count": 12040
+  },
+  {
+    "date": "2021-03-31",
+    "feedstock_count": 12288
+  },
+  {
+    "date": "2021-04-30",
+    "feedstock_count": 12542
+  },
+  {
+    "date": "2021-05-31",
+    "feedstock_count": 12825
+  },
+  {
+    "date": "2021-06-30",
+    "feedstock_count": 13233
+  },
+  {
+    "date": "2021-07-31",
+    "feedstock_count": 13491
+  },
+  {
+    "date": "2021-08-31",
+    "feedstock_count": 13702
+  },
+  {
+    "date": "2021-09-30",
+    "feedstock_count": 13975
+  },
+  {
+    "date": "2021-10-31",
+    "feedstock_count": 14294
+  },
+  {
+    "date": "2021-11-30",
+    "feedstock_count": 14624
+  },
+  {
+    "date": "2021-12-31",
+    "feedstock_count": 14863
+  },
+  {
+    "date": "2022-01-31",
+    "feedstock_count": 15176
+  },
+  {
+    "date": "2022-02-28",
+    "feedstock_count": 15503
+  },
+  {
+    "date": "2022-03-31",
+    "feedstock_count": 15794
+  },
+  {
+    "date": "2022-04-30",
+    "feedstock_count": 16028
+  },
+  {
+    "date": "2022-05-31",
+    "feedstock_count": 16283
+  },
+  {
+    "date": "2022-06-30",
+    "feedstock_count": 16537
+  },
+  {
+    "date": "2022-07-31",
+    "feedstock_count": 16835
+  },
+  {
+    "date": "2022-08-31",
+    "feedstock_count": 17198
+  },
+  {
+    "date": "2022-09-30",
+    "feedstock_count": 17502
+  },
+  {
+    "date": "2022-10-31",
+    "feedstock_count": 17790
+  },
+  {
+    "date": "2022-11-30",
+    "feedstock_count": 18149
+  },
+  {
+    "date": "2022-12-31",
+    "feedstock_count": 18366
+  },
+  {
+    "date": "2023-01-31",
+    "feedstock_count": 18537
+  },
+  {
+    "date": "2023-02-28",
+    "feedstock_count": 18728
+  },
+  {
+    "date": "2023-03-31",
+    "feedstock_count": 19006
+  },
+  {
+    "date": "2023-04-30",
+    "feedstock_count": 19301
+  },
+  {
+    "date": "2023-05-31",
+    "feedstock_count": 19491
+  },
+  {
+    "date": "2023-06-30",
+    "feedstock_count": 19653
+  },
+  {
+    "date": "2023-07-31",
+    "feedstock_count": 19920
+  },
+  {
+    "date": "2023-08-31",
+    "feedstock_count": 20214
+  },
+  {
+    "date": "2023-09-30",
+    "feedstock_count": 20377
+  },
+  {
+    "date": "2023-10-31",
+    "feedstock_count": 20632
+  },
+  {
+    "date": "2023-11-30",
+    "feedstock_count": 20828
+  },
+  {
+    "date": "2023-12-31",
+    "feedstock_count": 21094
+  },
+  {
+    "date": "2024-01-31",
+    "feedstock_count": 21347
+  },
+  {
+    "date": "2024-02-29",
+    "feedstock_count": 21705
+  },
+  {
+    "date": "2024-03-31",
+    "feedstock_count": 21966
+  },
+  {
+    "date": "2024-04-30",
+    "feedstock_count": 22197
+  },
+  {
+    "date": "2024-05-31",
+    "feedstock_count": 22455
+  },
+  {
+    "date": "2024-06-30",
+    "feedstock_count": 22672
+  },
+  {
+    "date": "2024-07-31",
+    "feedstock_count": 22988
+  },
+  {
+    "date": "2024-08-31",
+    "feedstock_count": 23215
+  },
+  {
+    "date": "2024-09-30",
+    "feedstock_count": 23472
+  },
+  {
+    "date": "2024-10-31",
+    "feedstock_count": 23782
+  },
+  {
+    "date": "2024-11-30",
+    "feedstock_count": 24132
+  },
+  {
+    "date": "2024-12-31",
+    "feedstock_count": 24482
+  },
+  {
+    "date": "2025-01-31",
+    "feedstock_count": 24715
+  },
+  {
+    "date": "2025-02-28",
+    "feedstock_count": 24936
+  },
+  {
+    "date": "2025-03-31",
+    "feedstock_count": 25265
+  },
+  {
+    "date": "2025-04-30",
+    "feedstock_count": 25519
+  },
+  {
+    "date": "2025-05-31",
+    "feedstock_count": 25815
+  },
+  {
+    "date": "2025-06-30",
+    "feedstock_count": 26033
+  },
+  {
+    "date": "2025-07-31",
+    "feedstock_count": 26246
+  },
+  {
+    "date": "2025-08-31",
+    "feedstock_count": 26425
+  },
+  {
+    "date": "2025-09-30",
+    "feedstock_count": 26571
+  },
+  {
+    "date": "2025-10-31",
+    "feedstock_count": 26732
+  },
+  {
+    "date": "2025-11-30",
+    "feedstock_count": 26933
+  },
+  {
+    "date": "2025-12-31",
+    "feedstock_count": 27065
+  },
+  {
+    "date": "2026-01-31",
+    "feedstock_count": 27254
+  },
+  {
+    "date": "2026-02-28",
+    "feedstock_count": 27517
+  },
+  {
+    "date": "2026-03-31",
+    "feedstock_count": 27864
+  },
+  {
+    "date": "2026-04-30",
+    "feedstock_count": 28091
+  },
+  {
+    "date": "2026-05-31",
+    "feedstock_count": 28366
+  },
+  {
+    "date": "2026-06-30",
+    "feedstock_count": 28718
+  },
+  {
+    "date": "2026-07-31",
+    "feedstock_count": 28965
+  },
+  {
+    "date": "2026-08-31",
+    "feedstock_count": 29305
+  }
+]
