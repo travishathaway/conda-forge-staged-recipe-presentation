@@ -70,6 +70,45 @@
           <aside class="notes">Speaker notes go here. Press S to open the notes window.</aside>
         </section>
 
+        <section>
+          <div class="cf-slide cf-slide--split">
+            <h2>Who am I?</h2>
+            <div class="cf-cols cf-cols--60-40">
+              <div>
+                <ul style="font-size: 2.7rem">
+                  <li class="fragment" data-fragment-index="0">Professional software engineer 💻</li>
+                  <li class="fragment" data-fragment-index="1">Amateur musician 🎸🎶🎤</li>
+                  <li class="fragment" data-fragment-index="2" style="position: relative">
+                      Work at Anaconda on conda packaging 📦<br />
+                  </li>
+                </ul>
+                <div class="cf-cols fragment" data-fragment-index="2" style="margin-top: 100px">
+                  <img data-src="./assets/anaconda_secondary_logo.svg" alt="Anaconda logo" width="90%" />
+                  <img data-src="./assets/conda_logo.svg" alt="Conda logo" width="90%" />
+                </div>
+              </div>
+              <div class="center" style="margin-top: -100px">
+                <img data-src="./assets/travis-profile.jpeg" alt="Travis Hathaway" class="profile-image"/>
+                <div class="center">
+                  <p class="smol" style="margin-top: 0; margin-bottom: 0;">Travis Hathaway</p>
+                  <p class="smoller faded" style="margin-top: 0;">(a.k.a. pretty chill guy)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="cf-slide">
+            <h2>Overview</h2>
+            <ul style="font-size: 2.7rem">
+              <li class="fragment">History of conda-forge</li>
+              <li class="fragment">Submitting your own recipes (i.e. packages)</li>
+              <li class="fragment">How to get involved as a volunteer</li>
+            </ul>
+          </div>
+        </section>
+
         <!-- ===== 2. Section divider: History ============================ -->
         <section data-label="Section divider – History" data-state="bare" data-background-gradient="var(--cf-gradient)">
           <div class="cf-slide cf-slide--divider">
@@ -196,18 +235,54 @@
         </section>
 
         <!-- ===== 9. Bulleted – The toolchain overhaul ==================== -->
-        <section data-label="History – Toolchain overhaul">
+        <section data-label="History">
           <div class="cf-slide">
             <div>
-              <span class="cf-eyebrow">Growing pains</span>
-              <h2>The toolchain overhaul</h2>
+              <span class="cf-eyebrow">2016-17</span>
+              <h2>Divergence with a common base</h2>
             </div>
             <ul>
-              <li class="fragment">GCC 5 shipped a breaking <code>libstdc++</code> change; the aging CentOS 5 / GCC 4.8 toolchain made building cutting-edge projects (e.g. early TensorFlow) painful</li>
-              <li class="fragment">The community chose to build and ship its own GCC toolchain as conda packages, instead of relying on Red Hat's <code>devtoolset</code></li>
-              <li class="fragment">Result: <code>conda-build</code> 3's <code>compiler(...)</code> Jinja function, the <code>build</code>/<code>host</code>/<code>run</code> dependency split, and dynamic pinning &mdash; funded in part by Samsung and Intel contracts with Anaconda</li>
-              <li class="fragment">This eventually produced the <code>main</code> channel: conda-forge recipes built with the new shared toolchain</li>
+              <li class="fragment">conda-forge steadily grows its own feedstocks while Anaconda's main channel is born</li>
+              <li class="fragment">Pressure is mounting to move faster by adopting new build toolchains</li>
+              <li class="fragment">conda-forge becomes the public base that Anaconda's main channel is built on top of</li>
+              <li class="fragment">Allows conda-forge to move independently and freely</li>
             </ul>
+          </div>
+        </section>
+
+        <section data-label="History - Key differences">
+          <div class="cf-slide cf-slide--split">
+            <h2>Key Differences</h2>
+            <div class="cf-cols">
+              <div class="cf-card cf-col">
+                <h3>conda-forge</h3>
+                <ul>
+                  <li class="fragment" data-fragment-index="0">
+                    Supported and run by volunteers
+                  </li>
+                  <li class="fragment" data-fragment-index="1">
+                    Free to use (free as in freedom 🥲) <br /> &nbsp;
+                  </li>
+                  <li class="fragment" data-fragment-index="2">
+                    Anyone can submit a recipe via a formal process
+                  </li>
+                </ul>
+              </div>
+              <div class="cf-card cf-col">
+                <h3>Anaconda's main</h3>
+                <ul>
+                  <li class="fragment" data-fragment-index="0">
+                    Commercial product operated by Anaconda
+                  </li>
+                  <li class="fragment" data-fragment-index="1">
+                    Free-ish* (free for certain enterprises and groups <200 people)
+                  </li>
+                  <li class="fragment" data-fragment-index="2">
+                    Adding recipes for outsiders is more opaque, not impossible though!
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -267,22 +342,24 @@
               <span class="cf-eyebrow">Where we are now</span>
               <h2>A global community</h2>
             </div>
-            <div class="cf-stat-row">
-              <div class="cf-col">
-                <span class="cf-stat">79</span>
-                <p class="cf-small">countries &amp; territories</p>
+            <div class="cf-stat-map">
+              <div class="cf-stat-stack">
+                <div class="cf-col">
+                  <span class="cf-stat">79</span>
+                  <p class="cf-small">countries &amp; territories</p>
+                </div>
+                <div class="cf-col">
+                  <span class="cf-stat">63%</span>
+                  <p class="cf-small">of maintainers are outside the US</p>
+                </div>
+                <div class="cf-col">
+                  <span class="cf-stat">4,900+</span>
+                  <p class="cf-small">maintainers list a location</p>
+                </div>
               </div>
-              <div class="cf-col">
-                <span class="cf-stat">63%</span>
-                <p class="cf-small">of maintainers are outside the US</p>
+              <div class="cf-chart">
+                <canvas id="countries-chart" aria-label="World map shaded by number of conda-forge maintainers per country, on a logarithmic scale"></canvas>
               </div>
-              <div class="cf-col">
-                <span class="cf-stat">4,900+</span>
-                <p class="cf-small">maintainers list a location</p>
-              </div>
-            </div>
-            <div class="cf-chart">
-              <canvas id="countries-chart" aria-label="Bar chart of the ten countries with the most conda-forge maintainers"></canvas>
             </div>
           </div>
         </section>

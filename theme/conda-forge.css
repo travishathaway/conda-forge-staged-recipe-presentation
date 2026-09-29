@@ -463,6 +463,30 @@ body {
 }
 
 /* ==========================================================================
+   Layout: stats + map (30/70)
+   Narrow column of smaller stats on the left, a .cf-chart filling the rest.
+   ========================================================================== */
+
+.cf-stat-map {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
+  gap: 48px;
+}
+
+.cf-stat-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 56px;
+}
+
+.cf-stat-stack .cf-stat {
+  font-size: 88px;
+}
+
+/* ==========================================================================
    Layout: chart
    Chart.js fills this box (responsive, maintainAspectRatio: false), so it
    needs a definite height: flex:1 takes whatever the title leaves over.
@@ -829,4 +853,25 @@ body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
+}
+
+.profile-image {
+  border-radius: 50%;
+    width: 60%;
+}
+/* Text utilities */
+.smol {
+  font-size: var(--cf-type-small);
+}
+
+.smoller {
+  font-size: var(--cf-type-micro);
+}
+
+.faded {
+  color: var(--cf-ink-muted);
+}
+
+.center {
+  text-align: center;
 }
