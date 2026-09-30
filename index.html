@@ -375,17 +375,69 @@
 
         <!-- ===== 12. Bulleted – staged-recipes: the front door =========== -->
         <section data-label="Submitting – staged-recipes front door">
-          <div class="cf-slide">
+          <div class="cf-slide cf-slide--split">
             <div>
               <span class="cf-eyebrow">Overview</span>
               <h2>staged-recipes: the front door</h2>
             </div>
-            <ul>
-              <li class="fragment"><code>staged-recipes</code> is a holding area for recipes destined to become their own feedstock &mdash; every package on conda-forge went through it</li>
-              <li class="fragment">Flow: fork &rarr; branch off <code>main</code> &rarr; add a recipe under <code>recipes/&lt;your-package&gt;/</code> &rarr; open a PR &rarr; CI builds it on Linux/macOS/Windows &rarr; review &rarr; merge</li>
-              <li class="fragment">Once merged, CI automatically creates a new <code>&lt;package&gt;-feedstock</code> repo and triggers the first build</li>
-            </ul>
+            <div class="cf-cols cf-cols--60-40">
+              <div class="cf-media fragment" data-fragment-index="0">
+                <pre class="cf-mermaid" aria-label="Flow: fork, branch off main, add a recipe, open a PR, CI builds on Linux, macOS and Windows, review, merge">flowchart TB
+  A["Fork and branch off main"] --> C["Add recipes/#lt;package#gt;/"]
+  C --> D["Open a PR"]
+  D --> E["CI builds on&lt;br/&gt;Linux, macOS, Windows"]
+  E --> F["Review"]
+  F --> G["Merge"]
+  class G done</pre>
+              </div>
+              <ul style="font-size: 2.25rem; max-width: 50ch; margin-top: 4rem">
+                <li class="fragment" data-fragment-index="1">
+                  <code>staged-recipes</code> is an entry point for recipes destined to become their own feedstock
+                </li>
+                <li class="fragment" data-fragment-index="2">
+                  After merging, each recipe gets its own feedstock repository
+                </li>
+              </ul>
+            </div>
           </div>
+        </section>
+
+        <!-- ===== 12a. 60/40 + photo – Why "forge" and "feedstock"? ======== -->
+        <!-- Photo: Dominik Vanyi on Unsplash (Unsplash License), assets/feedstock-open-pit-mine.jpg -->
+        <section data-label="Submitting – Forge and feedstock origins">
+          <div class="cf-slide cf-slide--split">
+            <div>
+              <span class="cf-eyebrow">Naming</span>
+              <h2>Why "forge" and "feedstock"?</h2>
+            </div>
+            <div class="cf-cols cf-cols--60-40">
+              <ul style="font-size: 2.25rem; max-width: 50ch">
+                <li class="fragment" data-fragment-index="0">
+                  <strong>Forge</strong>: A place where raw metal is worked into useful things
+                </li>
+                <li class="fragment" data-fragment-index="1">
+                  <strong>Feedstock</strong>: the raw material fed into an industrial process. In metallurgy: ore, fuel and scrap loaded into the furnace
+                </li>
+                <li class="fragment" data-fragment-index="2">
+                  In conda-forge, a feedstock repo holds the raw inputs (source + recipe) that CI feeds through the forge to produce finished packages
+                </li>
+              </ul>
+              <figure class="fragment" data-fragment-index="1" style="margin: 0; display: flex; flex-direction: column; gap: 16px; min-height: 0">
+                <img src="assets/yasin-hemmati-zHK__gTTTds-unsplash.jpg"
+                     alt="Molten metal pouring into a cast"
+                     style="width: 100%; max-height: 640px; object-fit: cover; margin: 0; border-radius: 12px" />
+                <figcaption class="cf-small" style="text-align: center; font-size: 1.25rem">
+                  Photo: <a href="https://unsplash.com/de/@yasinb3da">yasin hemmati</a> on <a href="https://unsplash.com/de/fotos/geschmolzenes-metall-giesst-in-die-kelle-zHK__gTTTds?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <aside class="notes">
+            "Forge" comes via Old French from Latin fabrica (workshop), from faber (craftsman) &mdash; same family as fabricate.
+            "Feedstock" is industrial jargon for the raw material fed into a machine or process. For a blacksmith or steelmaker that is ore, fuel, flux and scrap metal; nothing useful comes out of the furnace unless the right raw materials go in.
+            The analogy: a conda-forge feedstock is the raw material (upstream source + recipe) that goes into the automated build "furnace" and comes out as packages on the channel.
+            Photo shows raw material being dug from an open-pit mine (Dominik Vanyi, Unsplash License).
+          </aside>
         </section>
 
         <!-- ===== 13. Two column – Generating a recipe ==================== -->
@@ -630,7 +682,7 @@ extra:
               <span class="cf-eyebrow">Quality bar</span>
               <h2>Every recipe needs tests</h2>
             </div>
-            <ul>
+            <ul style="font-size: 2.25rem; max-width: 60ch">
               <li class="fragment">At minimum: existence tests &mdash; verify the package installed the files you expect (<code>package_contents</code> in v1)</li>
               <li class="fragment">Python packages: a <code>python:</code> test with <code>imports:</code> + automatic <code>pip_check: true</code></li>
               <li class="fragment">R packages: an <code>r:</code> test with <code>libraries:</code></li>
@@ -647,7 +699,7 @@ extra:
               <span class="cf-eyebrow">Checklist</span>
               <h2>Before you open the PR</h2>
             </div>
-            <ul>
+            <ul class="cf-checklist" style="font-size: 2.5rem; max-width: 50ch">
               <li class="fragment">License uses the correct SPDX identifier and case (<code>Apache-2.0</code>, not <code>APACHE 2.0</code>)</li>
               <li class="fragment">A <code>license_file</code> is included, unless the upstream tarball already ships one</li>
               <li class="fragment">Build from a tarball (<code>url:</code>), never <code>git_url:</code> &mdash; tarballs are checksummable and smaller</li>
@@ -678,18 +730,30 @@ extra:
         </section>
 
         <!-- ===== 19. Bulleted – Congrats, you're a maintainer ============ -->
+        <!-- GIF: "2026 Fireworks sparkling McKinney TX animated" by Ranch9613, CC0 (Wikimedia Commons),
+             assets/celebration-fireworks.gif -->
         <section data-label="Submitting – Congrats you're a maintainer">
-          <div class="cf-slide">
+          <div class="cf-slide cf-slide--split">
             <div>
               <span class="cf-eyebrow">What's next</span>
-              <h2>Congrats, you're a maintainer</h2>
+              <h2>Congrats, you're a maintainer 🥳 🎉</h2>
             </div>
-            <ul>
-              <li class="fragment">Merge routine maintenance PRs opened by conda-forge's bots</li>
-              <li class="fragment">Bump the version + checksum whenever upstream releases</li>
-              <li class="fragment">Keep <code>requirements</code> accurate as the package's dependencies change</li>
-              <li class="fragment">Answer questions on the feedstock's issue tracker</li>
-            </ul>
+            <div class="cf-cols cf-cols--60-40">
+              <ul style="font-size: 2.5rem; max-width: 50ch">
+                <li class="fragment">Merge routine maintenance PRs opened by conda-forge's bots</li>
+                <li class="fragment">Bump the version + checksum whenever upstream releases</li>
+                <li class="fragment">Keep <code>requirements</code> accurate as the package's dependencies change</li>
+                <li class="fragment">Answer questions on the feedstock's issue tracker</li>
+              </ul>
+              <figure style="margin: 0; display: flex; flex-direction: column;  gap: 16px; min-height: 0">
+                <img src="assets/celebration-fireworks.gif"
+                     alt="A crowd watching fireworks burst in the night sky"
+                     style="width: 100%; max-height: 640px; object-fit: cover; margin: 0; border-radius: 12px" />
+                <figcaption class="cf-small" style="text-align: center; font-size: 1.25rem">
+                  GIF: <a href="https://commons.wikimedia.org/wiki/File:2026_Fireworks_sparkling_McKinney_TX_animated.gif">Ranch9613</a> / Wikimedia Commons (CC0)
+                </figcaption>
+              </figure>
+            </div>
           </div>
           <aside class="notes">None of this works without the volunteers reviewing every PR that comes through staged-recipes &mdash; that's our next section.</aside>
         </section>
@@ -710,10 +774,16 @@ extra:
               <span class="cf-eyebrow">Why it matters</span>
               <h2>staged-recipes always needs reviewers</h2>
             </div>
-            <ul>
-              <li class="fragment">It's one of the highest-traffic repos in conda-forge &mdash; every new package waits here for a review</li>
-              <li class="fragment">Review times vary from days to weeks depending on how many volunteers are active on a given language team</li>
-              <li class="fragment">Straight from the maintainers: &ldquo;We are always looking for more staged-recipe reviewers&rdquo;</li>
+            <ul style="font-size: 2.7rem; max-width: 50ch">
+              <li class="fragment">
+                It's one of the highest-traffic repos in conda-forge &mdash; every new package waits here for a review
+              </li>
+              <li class="fragment">
+                Review times vary from days to weeks to months 😱 depending on how many volunteers are active on a given language team
+              </li>
+              <li class="fragment">
+                Straight from the maintainers: &ldquo;We are always looking for more staged-recipe reviewers&rdquo;
+              </li>
             </ul>
           </div>
         </section>
@@ -782,10 +852,16 @@ extra:
               <span class="cf-eyebrow">The gap</span>
               <h2>Why C/C++, R, Rust and Java need you</h2>
             </div>
-            <ul>
-              <li class="fragment">These ecosystems tend to have more compiler-heavy, platform-specific build logic (native toolchains, Rtools/CRAN quirks, JDK/build-tool versioning) than pure-Python recipes</li>
-              <li class="fragment">Fewer reviewers are comfortable evaluating those recipes, so PRs in these languages wait longer</li>
-              <li class="fragment">Python is the most popular language in the World, so it's easier to find reviewers</li>
+            <ul style="font-size: 2.7rem; max-width: 50ch">
+              <li class="fragment">
+                These ecosystems tend to have more <strong>compiler-heavy, platform-specific</strong> build logic
+              </li>
+              <li class="fragment">
+                Fewer reviewers are comfortable evaluating those recipes, so PRs in these languages <strong>wait longer</strong>
+              </li>
+              <li class="fragment">
+                Python is the <strong>most popular</strong> language in the world, so it's easier to find reviewers
+              </li>
             </ul>
           </div>
         </section>
@@ -823,7 +899,7 @@ extra:
             </div>
             <ul style="font-size: 2.7rem; max-width: 50ch">
               <li class="fragment">
-                Can be as little as 5 minutes upwards
+                Can take as little as 5 minutes a day (ditch your morning crossword for a pull request review! 😛)
               </li>
               <li class="fragment">
                 Find a build that's failing, examine the logs and find ways to get it working

@@ -3,6 +3,7 @@ import RevealMarkdown from 'reveal.js/plugin/markdown';
 import RevealHighlight from 'reveal.js/plugin/highlight';
 import RevealNotes from 'reveal.js/plugin/notes';
 import Chart from 'chart.js/auto';
+import mermaid from 'mermaid';
 import { ChoroplethController, GeoFeature, ColorLogarithmicScale, ProjectionScale } from 'chartjs-chart-geo';
 import { feature } from 'topojson-client';
 
@@ -263,3 +264,51 @@ new Chart(document.getElementById('countries-chart'), {
 		},
 	},
 });
+
+// --- Mermaid diagrams ----------------------------------------------------------
+// <pre class="cf-mermaid"> blocks are rendered to inline SVG. Mermaid's "base"
+// theme is fed the deck's tokens so diagrams match; the values are baked in at
+// render time, so they follow whichever palette (light/dark) is active then.
+await document.fonts.load(`600 26px ${token('--r-main-font')}`);
+
+mermaid.initialize({
+	startOnLoad: false,
+	theme: 'base',
+	themeVariables: {
+		fontFamily: token('--r-main-font'),
+		fontSize: '26px',
+		primaryColor: token('--cf-surface'),
+		primaryBorderColor: primary,
+		primaryTextColor: token('--cf-ink'),
+		lineColor: primary,
+		textColor: token('--cf-ink'),
+	},
+	flowchart: {
+		htmlLabels: true,
+		useMaxWidth: false,
+		curve: 'basis',
+		padding: 14,
+		nodeSpacing: 30,
+		rankSpacing: 24,
+		// Labels wrap at 200px by default; raise the cap so the fixed-width
+		// label spans below are never wrapped.
+		wrappingWidth: 600,
+	},
+});
+
+// Highlights the final "done" node with the accent color.
+const mermaidClassDefs = `classDef done fill:${primary},stroke:${primary},color:${token('--cf-on-accent')},font-weight:600`;
+
+// Mermaid sizes each box to its label, so labels are wrapped in a span with a
+// minimum width to give every box the same, wider width. The width must be
+// inline: mermaid measures labels in a temporary element appended to <body>
+// (outside .reveal), so theme CSS selectors don't apply during measurement and
+// the text would end up misaligned with its box.
+const labelStyle = 'display:inline-block;min-width:480px;text-align:center';
+const widenLabels = (source) =>
+	source.replace(/\["([^"]*)"\]/g, `["<span style='${labelStyle}'>$1</span>"]`);
+
+for (const [i, el] of [...document.querySelectorAll('.cf-mermaid')].entries()) {
+	const { svg } = await mermaid.render(`cf-mermaid-${i}`, `${widenLabels(el.textContent)}\n${mermaidClassDefs}`);
+	el.innerHTML = svg;
+}

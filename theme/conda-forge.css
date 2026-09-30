@@ -278,6 +278,31 @@ body {
   background: var(--cf-gradient);
 }
 
+/* Checklist: opt in with <ul class="cf-checklist"> */
+.reveal ul.cf-checklist li {
+  padding-left: calc(1em + 28px);
+}
+.reveal ul.cf-checklist li::before {
+  top: 0.3em;
+  width: 1em;
+  height: 1em;
+  box-sizing: border-box;
+  border: 3px solid var(--cf-accent);
+  border-radius: 6px;
+  background: transparent;
+}
+.reveal ul.cf-checklist li::after {
+  content: "";
+  position: absolute;
+  left: 0.3em;
+  top: 0.38em;
+  width: 0.28em;
+  height: 0.55em;
+  border: solid var(--cf-accent);
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+}
+
 .reveal ol {
   counter-reset: cf-ol;
 }
@@ -874,4 +899,31 @@ body {
 
 .center {
   text-align: center;
+}
+
+/* ==========================================================================
+   Mermaid diagrams
+   <pre class="cf-mermaid"> is replaced by the rendered SVG in main.js;
+   colors and fonts come from the theme tokens there.
+   ========================================================================== */
+
+.reveal .cf-mermaid {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+  white-space: normal;
+  width: auto;
+  font-size: inherit;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal .cf-mermaid svg {
+  display: block;
+  max-width: 100%;
 }
