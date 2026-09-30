@@ -90,7 +90,7 @@
               <div class="center" style="margin-top: -100px">
                 <img data-src="./assets/travis-profile.jpeg" alt="Travis Hathaway" class="profile-image"/>
                 <div class="center">
-                  <p class="smol" style="margin-top: 0; margin-bottom: 0;">Travis Hathaway</p>
+                  <h4 class="smol" style="margin-top: 1rem; margin-bottom: 0;">Travis Hathaway</h4>
                   <p class="smoller faded" style="margin-top: 0;">(a.k.a. pretty chill guy)</p>
                 </div>
               </div>
@@ -131,7 +131,7 @@
                      alt="Gangam Style" />
               </div>
               <div class="fragment cf-card">
-                <h3 style="text-align: center; line-height: 4rem">You're still <br />writing <strong>Python 2.7</strong></h3>
+                <h3 style="text-align: center; line-height: 4rem">You're still <br />writing <strong>Python 2.7</strong><br />by hand</h3>
               </div>
               <div class="fragment cf-card">
                 <h3 style="text-align: center; line-height: 4rem">You're still <br/>compiling  everything <br/>by hand 🤯</h3>
@@ -396,11 +396,20 @@
               <h2>Generating a recipe</h2>
             </div>
             <div class="cf-cols">
-              <div class="cf-col">
+              <div class="cf-col fragment">
                 <h3>Use a generator</h3>
-                <p class="cf-muted">Python packages on PyPI &mdash; <code>grayskull pypi --use-v1-format &lt;package&gt;</code>. R packages on CRAN &mdash; the <code>conda_r_skeleton_helper</code> script.</p>
+                <ul>
+                  <li>
+                    Python packages on PyPI:<br/>
+                    <code>grayskull pypi --use-v1-format &lt;package&gt;</code>
+                  </li>
+                  <li>
+                    R packages on CRAN:<br/>
+                    <code>grayskull cran --use-v1-format &lt;package&gt;</code>
+                  </li>
+                </ul>
               </div>
-              <div class="cf-col">
+              <div class="cf-col fragment">
                 <h3>Start from the example</h3>
                 <p class="cf-muted">Anything else &mdash; copy <code>recipes/example-v1/recipe.yaml</code> and edit by hand, following the section order and removing the explainer comments.</p>
               </div>
@@ -408,15 +417,13 @@
           </div>
         </section>
 
-        <!-- ===== 14. Code – recipe/recipe.yaml =========================== -->
+        <!-- ===== 14. Python – recipe/recipe.yaml =========================== -->
         <section data-label="Submitting – Code: recipe.yaml">
           <div class="cf-slide">
             <div>
-              <span class="cf-eyebrow">Example</span>
-              <h2>Anatomy of a recipe</h2>
+              <span class="cf-eyebrow">Python Example</span>
             </div>
-            <span class="cf-code-title">recipe/recipe.yaml</span>
-            <pre class="cf-dark"><code class="language-yaml" data-trim data-line-numbers>
+            <pre class="cf-dark"><code class="language-yaml" data-trim data-line-numbers="">
 context:
   name: zensus2pgsql
   version: 0.2.1
@@ -526,6 +533,96 @@ extra:
           <aside class="notes">As a rule, all dependencies must themselves be packaged on conda-forge, to guarantee ABI compatibility across the ecosystem.</aside>
         </section>
 
+        <!-- ===== 16. C/C++ – recipe/recipe.yaml =========================== -->
+        <section data-label="Submitting – Code: recipe.yaml">
+          <div class="cf-slide">
+            <div>
+              <span class="cf-eyebrow">C/C++ Example</span>
+            </div>
+            <pre class="cf-dark"><code class="language-yaml" data-trim data-line-numbers="">
+context:
+  version: 2.3.1
+
+recipe:
+  name: osm2pgsql
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/osm2pgsql-dev/osm2pgsql/archive/refs/tags/${{ version }}.tar.gz
+    sha256: e90461bd78787fd5cf82f73ac4bc0cfccbc4f498f35dce59eb4d168a380d6ac0
+
+build:
+  number: 1
+
+package:
+  name: osm2pgsql
+  version: ${{ version }}
+
+build:
+  number: 1
+  script:
+    - if: unix
+      then: build.sh
+      else: build.bat
+
+requirements:
+  build:
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib('c') }}
+    - cmake
+    - ninja
+    - pkg-config
+  host:
+    - expat
+    - proj
+    - bzip2
+    - zlib
+    - postgresql
+    - lua
+    - protozero
+    - libosmium
+    - cli11
+    - fmt <12
+    - nlohmann_json
+    - libboost-devel
+  run:
+    - lua
+    - osm2pgsql-replication
+
+tests:
+  - files:
+      recipe:
+        - test.sh
+        - liechtenstein-2013-08-03.osm.pbf
+    requirements:
+      run:
+        - postgresql
+        - if: unix
+          then: postgis
+    script:
+      - osm2pgsql --version
+      - osm2pgsql --help
+      - if: unix
+        then: bash test.sh
+
+about:
+  homepage: https://osm2pgsql.org
+  license: GPL-2.0-only
+  license_file:
+    - COPYING
+  summary: Import OpenStreetMap data into a PostgreSQL/PostGIS database
+  description: osm2pgsql is a tool for loading OpenStreetMap data into a PostgreSQL / PostGIS database suitable for applications like rendering into a map, geocoding with Nominatim, or general analysis.
+  documentation: https://osm2pgsql.org
+  repository: https://github.com/osm2pgsql-dev/osm2pgsql
+
+extra:
+  recipe-maintainers:
+    - travishathaway
+</code></pre>
+          </div>
+          <aside class="notes">Note the ${{ ... }} Jinja-in-YAML syntax. The sha256 should come from the tarball itself (curl -sL &lt;url&gt; | openssl sha256), never a repo checksum.</aside>
+        </section>
+
         <!-- ===== 16. Bulleted – Every recipe needs tests ================= -->
         <section data-label="Submitting – Every recipe needs tests">
           <div class="cf-slide">
@@ -633,69 +730,44 @@ extra:
                 <tr>
                   <th>Language</th>
                   <th>GitHub team</th>
-                  <th>Notes</th>
+                  <th>Open Pull Requests</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>c/c++</strong></td>
-                  <td><code>@conda-forge/help-c-cpp</code></td>
-                  <td><strong>High need for reviewers</strong></td>
-                </tr>
-                <tr>
-                  <td>go</td>
-                  <td><code>@conda-forge/help-go</code></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td><strong>java</strong></td>
-                  <td><code>@conda-forge/help-java</code></td>
-                  <td><strong>High need for reviewers</strong></td>
-                </tr>
-                <tr>
-                  <td>Julia</td>
-                  <td><code>@conda-forge/help-julia</code></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>nodejs</td>
-                  <td><code>@conda-forge/help-nodejs</code></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>perl</td>
-                  <td><code>@conda-forge/help-perl</code></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>python</td>
+                  <td>Python</td>
                   <td><code>@conda-forge/help-python</code></td>
-                  <td></td>
+                  <td>167</td>
                 </tr>
                 <tr>
-                  <td>python/c hybrid</td>
-                  <td><code>@conda-forge/help-python-c</code></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td><strong>r</strong></td>
-                  <td><code>@conda-forge/help-r</code></td>
-                  <td><strong>High need for reviewers</strong></td>
-                </tr>
-                <tr>
-                  <td>ruby</td>
-                  <td><code>@conda-forge/help-ruby</code></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>rust</td>
+                  <td>Rust</td>
                   <td><code>@conda-forge/help-rust</code></td>
-                  <td></td>
+                  <td>38</td>
                 </tr>
                 <tr>
-                  <td>other</td>
-                  <td><code>@conda-forge/staged-recipes</code></td>
-                  <td></td>
+                  <td>Python/C hybrid</td>
+                  <td><code>@conda-forge/help-python-c</code></td>
+                  <td>37</td>
+                </tr>
+                <tr>
+                  <td>C/C++</td>
+                  <td><code>@conda-forge/help-c-cpp</code></td>
+                  <td>33</td>
+                </tr>
+                <tr>
+                  <td>R</td>
+                  <td><code>@conda-forge/help-r</code></td>
+                  <td>19</td>
+                </tr>
+                <tr>
+                  <td>NodeJS</td>
+                  <td><code>@conda-forge/help-nodejs</code></td>
+                  <td>11</td>
+                </tr>
+                <tr>
+                  <td>Java</td>
+                  <td><code>@conda-forge/help-java</code></td>
+                  <td>7</td>
                 </tr>
               </tbody>
             </table>
@@ -704,16 +776,16 @@ extra:
 
         <!-- ===== 23. Bulleted – Why C/C++, R, and Java need you (placeholder) -->
         <!-- TODO: Travis to fill in with personal conda-forge review experience -->
-        <section data-label="Get involved – Why C/C++, R, Java need you (placeholder)">
+        <section data-label="In special need of non-Python languages">
           <div class="cf-slide">
             <div>
               <span class="cf-eyebrow">The gap</span>
-              <h2>Why C/C++, R, and Java need you</h2>
+              <h2>Why C/C++, R, Rust and Java need you</h2>
             </div>
             <ul>
               <li class="fragment">These ecosystems tend to have more compiler-heavy, platform-specific build logic (native toolchains, Rtools/CRAN quirks, JDK/build-tool versioning) than pure-Python recipes</li>
               <li class="fragment">Fewer reviewers are comfortable evaluating those recipes, so PRs in these languages wait longer</li>
-              <li class="fragment">TODO: add your own examples here</li>
+              <li class="fragment">Python is the most popular language in the World, so it's easier to find reviewers</li>
             </ul>
           </div>
         </section>
@@ -726,9 +798,17 @@ extra:
               <span class="cf-eyebrow">Volunteering</span>
               <h2>How to join a review team</h2>
             </div>
-            <ul>
-              <li class="fragment">Interested volunteers can reach out to a member of <code>@conda-forge/core</code></li>
-              <li class="fragment">TODO: add your own notes here</li>
+            <ul style="font-size: 2.7rem; max-width: 50ch">
+              <li class="fragment">
+                Interested volunteers can reach out to a member of<br />
+                <code><a href="https://github.com/conda-forge/governance/blob/main/teams/core.csv">@conda-forge/core</a></code>
+              </li>
+              <li class="fragment">
+                On top of this, the best way is to dig in and start commenting and reviewing on pull requests yourself
+              </li>
+              <li class="fragment">
+                Hangout with us on <a href="https://conda-forge.zulipchat.com">Zulip</a> and ping me! (Travis Hathaway)
+              </li>
             </ul>
           </div>
         </section>
@@ -741,9 +821,23 @@ extra:
               <span class="cf-eyebrow">In practice</span>
               <h2>What reviewing looks like day to day</h2>
             </div>
-            <ul>
-              <li class="fragment">TODO: fill in from your own conda-forge review experience</li>
+            <ul style="font-size: 2.7rem; max-width: 50ch">
+              <li class="fragment">
+                Can be as little as 5 minutes upwards
+              </li>
+              <li class="fragment">
+                Find a build that's failing, examine the logs and find ways to get it working
+              </li>
+              <li class="fragment">
+                Making sure submitted recipes check all the boxes (including licenses, no or limited use of vendoring, passes linter checks)
+              </li>
+              <li class="fragment">
+                Scientifically proven to stimulate brain growth and foster new neural pathway connections*
+              </li>
             </ul>
+            <div style="font-size: 1rem; color: #555; text-align: right" class="fragment">
+              *results of scientific studies proving this still outstanding.
+            </div>
           </div>
         </section>
 
